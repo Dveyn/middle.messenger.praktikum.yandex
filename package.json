@@ -1,26 +1,34 @@
 {
-  "name": "yandex-practicum",
+  "name": "sprint_1",
   "version": "1.0.0",
-  "description": "---",
-  "main": "index.js",
+  "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./server.js"
+    "dev": "rm -rf dist/* && parcel src/*.html --no-cache --no-source-maps --port 3000",
+    "build": "parcel build src/*.html --target app --dist-dir dist --public-url ./ --no-source-maps --no-cache --no-optimize",
+    "start": "npm run build && node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dveyn/middle.messenger.praktikum.yandex.git"
+  "engines": {
+    "node": ">=12"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Dveyn/middle.messenger.praktikum.yandex/issues"
+  "targets": {
+    "app": {
+      "context": "browser",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule"
+    }
   },
-  "homepage": "https://github.com/Dveyn/middle.messenger.praktikum.yandex#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "handlebars": "^4.7.7"
   },
   "devDependencies": {
-    "parcel": "^2.8.3"
+    "@parcel/config-default": "^2.0.1",
+    "@parcel/resolver-glob": "^2.0.1",
+    "@parcel/transformer-sass": "^2.0.1",
+    "autoprefixer": "^10.4.0",
+    "express": "^4.17.1",
+    "parcel": "^2.0.1",
+    "parcel-transformer-hbs": "^1.0.4",
+    "postcss": "^8.4.1",
+    "sass": "^1.43.5"
   }
 }
