@@ -57,12 +57,6 @@ document.addEventListener('click', function (e) {
         document.querySelector('#modal').innerHTML = components.modalTemplate({ styles, images, icons, modalName: 'avatarModal' });
     } else if (e.target.className === styles['modal-container']) {
         document.querySelector('#modal').innerHTML = '';
-    } else if (e.target.className === styles['error-404']) {
-        document.querySelector('main').innerHTML = pages.error404Template({ styles });
-        history.pushState(null, null, "/404");
-    } else if (e.target.className === styles['error-500']) {
-        document.querySelector('main').innerHTML = pages.error500Template({ styles });
-        history.pushState(null, null, "/500");
     }
 }, false);
 
