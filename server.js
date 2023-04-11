@@ -8,4 +8,3 @@ app.use(express.static('./dist/'));
 app.listen(PORT, function () {
   console.log(`Listening on port ${PORT}!`);
 }); 
- 
