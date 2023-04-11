@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "rm -rf dist/* && parcel src/*.html --no-cache --no-source-maps --port 3000",
-    "build": "parcel build src/*.html --target app --dist-dir dist --public-url ./ --no-source-maps --no-cache --no-optimize",
-    "start": "npm run build && node server.js"
+    "dev": "rm -rf dist/* && parcel src/*.html --no-cache  --port 3000",
+    "build": "parcel build src/*.html --no-cache ",
+    "start": "npm run build  && node ./server.js"
   },
   "engines": {
     "node": ">=12"
@@ -29,6 +29,7 @@
     "parcel": "^2.0.1",
     "parcel-transformer-hbs": "^1.0.4",
     "postcss": "^8.4.1",
+    "postcss-modules": "^4.3.1",
     "sass": "^1.43.5"
   }
 }
