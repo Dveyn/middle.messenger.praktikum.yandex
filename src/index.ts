@@ -1,7 +1,7 @@
 import * as components from './components';
 import * as pages from './pages';
 import * as styles from './style.scss';
-import * as utils from './utils/utils.js';
+import * as utils from './utils/utils.ts';
 import * as layouts from './layouts';
 import images from '../static/images/avatar04.png';
 import icons from '../static/icons/*';
@@ -21,7 +21,6 @@ Handlebars.registerPartial('avatarModal', components.avatarModalTemplate);
 Handlebars.registerPartial('modal', components.modalTemplate);
 
 document.querySelector('main').innerHTML = pages.loginTemplate({ styles });
-document.querySelector('nav').innerHTML = layouts.nav();
 document.addEventListener('click', function (e) {
     e.preventDefault();
 
