@@ -1,11 +1,12 @@
 {
-  "name": "sprint_1",
+  "name": "sprint_2",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "rm -rf dist/* && parcel src/*.html --no-cache  --port 3000",
     "build": "parcel build src/*.html --no-cache ",
-    "start": "npm run build  && node ./server.js"
+    "start": "npm run build  && node ./server.js",
+    "eslint": "eslint . --ext .ts,.js"
   },
   "engines": {
     "node": ">=12"
@@ -25,11 +26,17 @@
     "@parcel/resolver-glob": "^2.0.1",
     "@parcel/transformer-sass": "^2.0.1",
     "autoprefixer": "^10.4.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
     "express": "^4.17.1",
     "parcel": "^2.0.1",
     "parcel-transformer-hbs": "^1.0.4",
     "postcss": "^8.4.1",
     "postcss-modules": "^4.3.1",
-    "sass": "^1.43.5"
+    "sass": "^1.43.5",
+    "stylelint": "^15.6.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-scss": "^4.6.0"
   }
 }

@@ -1,0 +1,11 @@
+{
+    "include": ["./src/**/*","./server.ts"],
+    "exclude": ["./dist"],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "sourceMap": true,
+        "strictNullChecks": true
+    }
+}
