@@ -1,0 +1,46 @@
+<div class={{ styles.conversation-header }}>
+    <div class={{ styles.conversation-avatar-container }}>
+        <img class={{ styles.conversation-avatar-image }} src={{ images }} alt="Аватар">
+        <div class={{ styles.conversation-user-name }}>Андрей</div>
+    </div>
+    <div class={{ styles.conversation-actions-container}}>
+        <img class={{ styles.actions-button }} src={{ icons.threedots-svg }} alt="Действия">
+    </div>
+
+</div>
+<div class={{ styles.conversation-body-container }}>
+    <div class={{ styles.conversation-date }}>3 апреля</div>
+    <div class={{ styles.conversation-other-message }}>
+        Пример сообщения которое написал Андрей 3 апреля
+        <div class={{ styles.conversation-other-message-time }}>23:59</div>
+    </div>
+    <div class={{ styles.conversation-date }}>5 апреля</div>
+    <div class={{ styles.conversation-other-message }}>
+        Это сообщение 5 апреля. Нужно быстрее уже дописывать первый спринт
+        <div class={{ styles.conversation-other-message-time }}>23:59</div>
+    </div>
+    <div class={{ styles.conversation-other-message }}>
+        Завтра вебинар по шаблонизатору! Надеюсь станут более понятны некоторые моменты.
+        <div class={{ styles.conversation-other-message-time }}>23:59</div>
+    </div>
+    <div class={{ styles.conversation-self-message }}>
+        О да, я тоже жду этот вебинар и надеюсь успею доехать с работы до дома.
+        <div class={{ styles.conversation-self-message-status }}>
+            <img src={{ icons.status-read-svg }} alt="статус сообщения">
+        <div class={{ styles.conversation-self-message-time }}>23:59</div>
+        </div>
+    </div>
+
+
+</div>
+<div class={{ styles.conversation-footer }}>
+    <div class={{ styles.attach-button-container }}>
+        <img class={{ styles.attach-button }} src={{ icons.paperclip-svg }} alt="прикрепить">
+    </div>
+    <div class={{ styles.conversation-message-box }}>
+        {{> input classes=styles.input-conversation-message-box name="conversation-message" placeholder="Сообщение"}}
+    </div>
+    <div class={{ styles.arrow-button-container }}>
+        <img class={{ styles.send-button }} src={{ icons.arrow-svg }} alt="отправить">
+    </div>
+</div>
