@@ -11,12 +11,12 @@ type Options = {
 };
 
 function queryStringify(data: Record<string, any>) {
-  return Object.entries(data).map(([key, value]) => key + '=' + value).join('&');
+  return Object.entries(data).map(([key, value]) => `${key}=${value}`).join('&');
 }
 export default class HTTPTransport {
   get(url: string, options: Options = { method: Method.GET }): Promise<XMLHttpRequest> {
     if (options.data) {
-      url += '?' + queryStringify(options.data);
+      url += `?${queryStringify(options.data)}`;
       options.data = {};
     }
     return this.request(url, { ...options, method: Method.GET });

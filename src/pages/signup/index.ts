@@ -28,7 +28,6 @@ export class Signup extends Block {
   }
 
   render() {
-    
     const inputEmail = new Input({
       type: 'text',
       class: `${this.props.styles.input} ${this.props.styles['input-email']}`,
@@ -101,7 +100,6 @@ export class Signup extends Block {
       },
     });
 
-
     const buttonSignup = new Button({
       text: 'Зарегистрироваться',
       class: `${this.props.styles.button} ${this.props.styles['signup-form-button-primary']}`,
@@ -110,7 +108,7 @@ export class Signup extends Block {
           e.preventDefault();
 
           const inputs = [
-            inputEmail, inputLogin, inputFirstName, inputSecondName, 
+            inputEmail, inputLogin, inputFirstName, inputSecondName,
             inputPhone, inputPassword, inputPassword2,
           ];
 

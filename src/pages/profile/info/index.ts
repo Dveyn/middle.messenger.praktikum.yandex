@@ -13,7 +13,7 @@ export class ProfileInfo extends Block {
   render() {
     const changeAvatar = new Avatar({
       ...this.props,
-      imagesAlt: "Аватар",
+      imagesAlt: 'Аватар',
       events: {
         click: () => { renderDOM('#modal', this.props.linkChangeAvatar); },
       },
@@ -23,7 +23,7 @@ export class ProfileInfo extends Block {
       class: this.props.styles['arrow-button'],
       imageBeforeClass: this.props.styles['profile-return-button'],
       imageBeforeSrc: this.props.icons.arrowback,
-      imagesAlt: "Назад",
+      imagesAlt: 'Назад',
       events: {
         click: () => { renderDOM('#app', this.props.arrowBack); },
       },
@@ -32,7 +32,7 @@ export class ProfileInfo extends Block {
     const linkChangeInfo = new Link({
       class: this.props.styles['profile-info-link-change-info'],
       text: 'Изменить данные',
-      imagesAlt: "Изменить данные",
+      imagesAlt: 'Изменить данные',
       events: {
         click: () => { renderDOM('#app', this.props.changeInfo); },
       },
@@ -40,7 +40,7 @@ export class ProfileInfo extends Block {
     const linkChangePassword = new Link({
       class: this.props.styles['profile-info-link-change-password'],
       text: 'Изменить пароль',
-      imagesAlt: "Изменить пароль",
+      imagesAlt: 'Изменить пароль',
       events: {
         click: () => { renderDOM('#app', this.props.changePassword); },
       },
@@ -48,7 +48,7 @@ export class ProfileInfo extends Block {
     const linkExit = new Link({
       class: this.props.styles['profile-info-link-exit'],
       text: 'Выйти',
-      imagesAlt: "Выйти",
+      imagesAlt: 'Выйти',
       events: {
         click: () => { renderDOM('#app', this.props.linkClickExit); },
       },

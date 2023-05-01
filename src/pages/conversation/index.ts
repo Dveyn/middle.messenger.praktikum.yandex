@@ -22,7 +22,7 @@ export class Conversation extends Block {
       class: this.props.styles['arrow-button'],
       imageBeforeClass: this.props.styles['send-button'],
       imageBeforeSrc: this.props.icons.arrow,
-      imagesAlt: "Отправить сообщение",
+      imagesAlt: 'Отправить сообщение',
       events: {
         click: () => {
           const inputs = [inputMessage];

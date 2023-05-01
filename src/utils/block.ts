@@ -1,5 +1,6 @@
-import { v4 as makeUUID } from 'uuid'
+import { v4 as makeUUID } from 'uuid';
 import EventBus from './eventbus';
+
 export default class Block {
   static EVENTS = {
     INIT: 'init',
@@ -14,12 +15,12 @@ export default class Block {
 
   props: any;
 
-  _id: string = '';
+  _id = '';
 
   eventBus: (() => EventBus);
 
   constructor(
-    tagName: string = 'div',
+    tagName = 'div',
     props: any,
   ) {
     const eventBus = new EventBus();

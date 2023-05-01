@@ -6,7 +6,9 @@
     "dev": "rm -rf dist/* && parcel src/*.html --no-cache  --port 3000",
     "build": "parcel build src/*.html --no-cache ",
     "start": "npm run build  && node ./server.ts",
-    "eslint": "eslint . --ext .ts,.js"
+    "eslint": "eslint . --ext .ts,.js",
+    "eslint:fix": "eslint . --ext .ts,.js --fix",
+    "lint:styles": "stylelint \"src/**/*.scss\""
   },
   "engines": {
     "node": ">=12"
@@ -19,6 +21,8 @@
     }
   },
   "dependencies": {
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "handlebars": "^4.7.7",
     "uuid": "^9.0.0"
   },
@@ -26,10 +30,12 @@
     "@parcel/config-default": "^2.0.1",
     "@parcel/resolver-glob": "^2.0.1",
     "@parcel/transformer-sass": "^2.0.1",
+    "@types/node": "^18.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-import": "^2.25.3",
     "express": "^4.17.1",
     "parcel": "^2.0.1",
     "parcel-transformer-hbs": "^1.0.4",

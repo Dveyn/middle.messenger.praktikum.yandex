@@ -22,7 +22,6 @@ export class Input extends Block {
   }
 
   render() {
-
     if (this.props.type === 'textarea') {
       return compile(tmplTextarea, this.props);
     }

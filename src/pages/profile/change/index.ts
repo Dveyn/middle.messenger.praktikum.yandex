@@ -91,7 +91,7 @@ export class ProfileChange extends Block {
         focus: this._onFocusChange.bind(this),
       },
     });
-      
+
     const linkProfileChangeReturn = new Link({
       class: this.props.styles['arrow-button'],
       imageBeforeClass: this.props.styles['profile-return-button'],

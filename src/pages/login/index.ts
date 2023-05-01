@@ -21,7 +21,6 @@ export class Login extends Block {
   }
 
   render() {
-
     const inputLogin = new Input({
       type: 'text',
       class: `${this.props.styles.input} ${this.props.styles['input-login']}`,

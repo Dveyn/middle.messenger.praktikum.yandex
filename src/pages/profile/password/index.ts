@@ -30,11 +30,9 @@ export class ProfilePassword extends Block {
         element.previousElementSibling?.classList.remove(this.props.styles['input-error']);
       }
     }
-
   }
 
   render() {
-
     const inputOldPassword = new Input({
       type: 'password',
       class: `${this.props.styles.input} ${this.props.styles['profile-change-field-value']}`,

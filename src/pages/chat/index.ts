@@ -29,7 +29,7 @@ export class Chat extends Block {
       chatInfos.push(new ChatInfo({
         images: this.props.images,
         styles: this.props.styles,
-        imagesAlt: "Чат",
+        imagesAlt: 'Чат',
         name: 'Андрей',
         time: '00:41',
         text: `Тестовое сообщене ${i}`,
@@ -41,7 +41,7 @@ export class Chat extends Block {
     }
     const linkProfileOpen = new Link({
       text: 'Профиль ',
-      class: this.props.styles['link-profile-open'], 
+      class: this.props.styles['link-profile-open'],
       imageAfterSrc: this.props.icons.profilearrow,
       events: {
         click: () => { renderDOM('#app', this.props.openProfile); },
