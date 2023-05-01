@@ -12,10 +12,13 @@ insert_final_newline = true
 # Set default charset
 [*.{js,ts}]
 charset = utf-8
+indent_style = space
+indent_size = 4
 
 # Tab indentation (no size specified)
 [Makefile]
 indent_style = tab
+
 
 # Matches the exact files either package.json or .travis.yml
 [{package.json,.travis.yml}]

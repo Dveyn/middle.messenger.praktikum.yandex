@@ -1,6 +1,5 @@
-@import url("vars.scss");
-@import url("components/index");
-@import url("pages/index");
+@import url("components/index.scss");
+@import url("pages/index.scss");
 
 .auth-popup {
     margin: auto;
@@ -15,7 +14,7 @@
 }
 
 .auth-header {
-    font-family: $font-family;
+    font-family: Helvetica;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
