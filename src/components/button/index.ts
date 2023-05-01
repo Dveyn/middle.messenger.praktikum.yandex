@@ -1,3 +1,21 @@
-import buttonTemplate from "./button.hbs";
+import tmpl from './button.hbs';
+import Block from '../../utils/block';
+import compile from '../../utils/compile';
 
-export { buttonTemplate };
+interface ButtonProps {
+  text: string,
+  class?: string,
+  events?: {
+    click: (e: Event) => void
+  }
+}
+
+export class Button extends Block {
+  constructor(props: ButtonProps) {
+    super('button', props);
+  }
+
+  render() {
+    return compile(tmpl, this.props);
+  }
+}

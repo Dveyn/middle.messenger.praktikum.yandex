@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: stretch;
+
     flex-basis: 100%;
 }
 
@@ -11,8 +12,9 @@
     flex-shrink: 0;
     flex-basis: 310px;
     background-color: #fbfbfb;
+
     display: flex;
-    flex-direction: column;
+    flex-direction: column;    
 }
 
 .chat-infos-container {
@@ -21,15 +23,14 @@
     overflow-y: scroll;
 }
 
+
+
 .chat-right-container {
     display: flex;
-    flex-direction: column;
     flex-grow: 1;
     flex-shrink: 1;
-    background-color: #ffffff;
-    border-left: 1px solid #eaeaea;
-}
 
+}
 .chat-stub {
     margin: auto;
     font-family: $font-family;
@@ -40,7 +41,7 @@
     color: #999999;
 }
 
-.link-profile-open {
+.profile-link-container {
     font-family: $font-family;
     font-style: normal;
     font-size: 12px;
@@ -50,12 +51,17 @@
     padding: 21px 10px;
 }
 
+.link-profile-open {
+    display: inline;
+}
+
 .search-container {
     margin: 0 10px;
     border-bottom: 1px solid #eaeaea;
 }
 
 .search-container-placeholder {
+
     display: inline-block;
     font-family: $font-family;
     font-style: normal;
@@ -83,7 +89,7 @@
     width: 290px;
 }
 
-.input-search-box:not(:placeholder-shown)~.search-container-placeholder,
-.input-search-box:focus~.search-container-placeholder {
+.input-search-box:not(:placeholder-shown) ~ .search-container-placeholder,
+.input-search-box:focus ~ .search-container-placeholder {
     display: none;
 }

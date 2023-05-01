@@ -1,3 +1,18 @@
-import labelTemplate from "./label.hbs";
+import tmpl from './label.hbs';
+import Block from '../../utils/block';
+import compile from '../../utils/compile';
 
-export { labelTemplate };
+interface LabelProps {
+  text: string,
+  class?: string
+}
+
+export class Label extends Block {
+  constructor(props: LabelProps) {
+    super('div', props);
+  }
+
+  render() {
+    return compile(tmpl, this.props);
+  }
+}

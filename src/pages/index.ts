@@ -1,8 +1,8 @@
-export { loginTemplate } from "./login";
-export { signupTemplate } from "./signup";
-export { chatTemplate } from './chat';
-export { conversationTemplate } from "./conversation";
-export { profileInfoTemplate } from "./profile/info";
-export { profileChangeTemplate } from "./profile/change";
-export { profilePasswordTemplate } from "./profile/password";
-export { error404Template, error500Template } from "./errors/index";
+export { Login } from './login';
+export { Signup } from './signup';
+export { Chat } from './chat';
+export { Conversation } from './conversation';
+export { ProfileInfo } from './profile/info';
+export { ProfileChange } from './profile/change';
+export { ProfilePassword } from './profile/password';
+export { ModalAvatar } from './modals';

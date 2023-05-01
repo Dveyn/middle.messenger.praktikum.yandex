@@ -1,13 +1,11 @@
 <div class={{ styles.chat-info-container }}>
     <div class={{ styles.chat-info }}>
-        <div class={{ styles.chat-avatar }}>
-            <img class={{ styles.avatar-image }} src={{ images }} alt="Аватар">
-        </div>
-        <div class={{ styles.chat-name }}>Тест</div>
-        <div class={{ styles.chat-time }}>20:52</div>
-        <div class={{ styles.chat-last-message }}>Текст заглушка первого сообщения</div>
+        <div class={{ styles.chat-avatar }}><img  class={{ styles.avatar-image }} src={{ images }} alt="{{ imagesAlt }}"></div>
+        <div class={{ styles.chat-name }}>{{ name }}</div>
+        <div class={{ styles.chat-time }}>{{ time }}</div>
+        <div class={{ styles.chat-last-message }}>{{ text }}</div>
         <div class={{ styles.chat-unread-count-container }}>
-            <div class={{ styles.chat-unread-count }}>2</div>
+            <div class={{ styles.chat-unread-count }}>{{ unread }} </div>
         </div>
     </div>
 </div>

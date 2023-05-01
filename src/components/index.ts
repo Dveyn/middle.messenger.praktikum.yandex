@@ -1,5 +1,6 @@
-export { buttonTemplate } from "./button";
-export { inputTemplate } from "./input";
-export { labelTemplate } from "./label";
-export { chatInfoTemplate } from "./chat-info";
-export { modalTemplate, avatarModalTemplate } from "./modals";
+export { Button } from './button';
+export { Input } from './input';
+export { Label } from './label';
+export { ChatInfo } from './chat-info';
+export { Link } from './link';
+export { Avatar } from './avatar';

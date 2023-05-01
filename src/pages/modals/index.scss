@@ -1,4 +1,4 @@
-@import 'avatar/avatar.scss';
+@import './avatar/avatar.scss';
 
 .modal-container {
     position: absolute;
@@ -12,7 +12,6 @@
     // background-color: #000000;
     // opacity: 0.4;
     background: rgba(0, 0, 0, .4)
-
 }
 .modal-popup {
 
@@ -29,5 +28,4 @@
 
     box-sizing: border-box;
     padding: 30px;
-
 }
