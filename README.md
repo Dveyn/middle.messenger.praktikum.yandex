@@ -12,5 +12,11 @@
 ### Сброка проекта
 - `npm run build `
 
-### Запуск локальной версии
+### Запуск локальной версии 
 - `npm run start`
+
+### Запуск проверки ESLint
+- `npm run eslint`
+
+### Запуск проверки stylelint
+- `npm run lint:styles`

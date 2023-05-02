@@ -1,8 +1,11 @@
 {
-    "modules": true,
-    "plugins": {
-      "autoprefixer": {
-        "grid": true
-      }
-    }
-  } 
+  "modules": true,
+  "plugins": {
+    "postcss-import": {},
+    "autoprefixer": {
+      "grid": true
+    },
+    "postcss-nesting": {},
+    "postcss-extend-rule": {}
+  }
+}
