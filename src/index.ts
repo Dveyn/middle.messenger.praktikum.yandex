@@ -8,6 +8,9 @@ import * as styles from './style.scss';
 import images from '../static/images/avatar04.png';
 import icons from '../static/icons/*.svg';
 
+console.log(styles);
+
+
 const assets = { styles, icons, images };
 
 const login = new Login(assets);
