@@ -1,5 +1,5 @@
 .avatar-modal-header {
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 15px;
     line-height: 20px;
@@ -14,7 +14,7 @@
 
 .avatar-modal-choose-file {
     margin: auto;
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 12px;
     line-height: 16px;
@@ -24,5 +24,5 @@
 }
 
 .avatar-modal-change-avatar {
-    @extend .signup-form-button-primary;
+    @extend .signup-form-button-primary !optional;
 }

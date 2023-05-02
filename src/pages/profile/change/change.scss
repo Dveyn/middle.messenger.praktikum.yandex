@@ -1,12 +1,12 @@
 .profile-change-return {
-    @extend .profile-return;
+    @extend .profile-return !optional;
 }
 
 
 .profile-change-field-value {
     flex-grow: 1;
     flex-shrink: 1;
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 13px;
     line-height: 13px;
@@ -23,5 +23,5 @@
 }
 
 .profile-change-save-button {
-    @extend .signup-form-button-primary;
+    @extend .signup-form-button-primary !optional;
 }

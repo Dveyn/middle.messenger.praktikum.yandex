@@ -29,7 +29,7 @@
 
 .chat-name {
     grid-area: name;
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     font-size: 13px;
     font-style: normal;
     font-weight: 600;
@@ -40,7 +40,7 @@
 
 .chat-time {
     grid-area: time;
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     font-size: 9px;
     font-style: normal;
     line-height: 13px;
@@ -50,7 +50,7 @@
 
 .chat-last-message {
     grid-area: message;
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     font-size: 12px;
     font-style: normal;
     line-height: 15px;
@@ -71,7 +71,7 @@
 
 .chat-unread-count {
     margin: auto;
-    font-family: Helvetica;
+    font-family: Helvetica, sans-serif;
     font-size: 11px;
     font-style: normal;
     line-height: 12px;
