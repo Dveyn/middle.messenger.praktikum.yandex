@@ -1,7 +1,7 @@
 import tmpl from './change.hbs';
 import Block from '../../../utils/block';
 import {
-  Label, Input, Button, Link,
+  Label, Input, Button, Link, ErrorInput,
 } from '../../../components';
 
 import compile from '../../../utils/compile';
@@ -14,13 +14,27 @@ export class ProfileChange extends Block {
   }
 
   _onFocusChange(event: Event) {
-    const element = event.target as HTMLInputElement;
-    if (!isValid(element)) {
+    const element = event.target as HTMLInputElement;  
+    const validationResult = isValid(element);
+    if (!validationResult.valid) {
+      console.log(validationResult);
+        
       element.classList.add(this.props.styles['input-error']);
       element.previousElementSibling?.classList.add(this.props.styles['input-error']);
+      const prevError = element.nextElementSibling as ErrorInput;
+      if (prevError && prevError.parentNode) {
+        prevError.parentNode.removeChild(prevError);
+      }
+      
+      const error = new ErrorInput({ text:validationResult.reason, class: this.props.styles['input-error'] });
+      element.insertAdjacentElement('afterend', error.getContent());
     } else {
       element.classList.remove(this.props.styles['input-error']);
       element.previousElementSibling?.classList.remove(this.props.styles['input-error']);
+      const prevError = element.nextElementSibling as ErrorInput;
+      if (prevError && prevError.parentNode) {
+        prevError.parentNode.removeChild(prevError);
+      }
     }
   }
 
@@ -62,7 +76,7 @@ export class ProfileChange extends Block {
       type: 'text',
       class: `${this.props.styles.input} ${this.props.styles['profile-change-field-value']}`,
       name: 'second_name',
-      validationType: 'name',
+      validationType: 'surname',
       value: 'Иванов',
       events: {
         blur: this._onFocusChange.bind(this),
@@ -116,7 +130,7 @@ export class ProfileChange extends Block {
           let isFormValid = true;
           inputs.map((input) => {
             const el = input.element as HTMLInputElement;
-            if (!isValid(el)) {
+            if (!isValid(el).valid) {
               isFormValid = false;
               el.classList.add(this.props.styles['input-error']);
               el.previousElementSibling?.classList.add(this.props.styles['input-error']);

@@ -13,28 +13,30 @@ type Options = {
 function queryStringify(data: Record<string, any>) {
   return Object.entries(data).map(([key, value]) => `${key}=${value}`).join('&');
 }
+
+type HTTPMethod = (url: string, options?: Options) => Promise<XMLHttpRequest>;
 export default class HTTPTransport {
-  get(url: string, options: Options = { method: Method.GET }): Promise<XMLHttpRequest> {
+  get:HTTPMethod = (url: string, options: Options = { method: Method.GET }) =>{
     if (options.data) {
       url += `?${queryStringify(options.data)}`;
       options.data = {};
     }
     return this.request(url, { ...options, method: Method.GET });
-  }
+  };
 
-  post(url: string, options: Options = { method: Method.POST }): Promise<XMLHttpRequest> {
+  post:HTTPMethod = (url: string, options: Options = { method: Method.POST })=> {
     return this.request(url, options);
-  }
+  };
 
-  put(url: string, options: Options = { method: Method.PUT }): Promise<XMLHttpRequest> {
+  put:HTTPMethod = (url: string, options: Options = { method: Method.PUT })=> {
     return this.request(url, options);
-  }
+  };
 
-  delete(url: string, options: Options = { method: Method.DELETE }): Promise<XMLHttpRequest> {
+  delete:HTTPMethod = (url: string, options: Options = { method: Method.DELETE })=> {
     return this.request(url, options);
-  }
+  };
 
-  request(url: string, options: Options = { method: Method.GET }): Promise<XMLHttpRequest> {
+  request:HTTPMethod = (url: string, options: Options = { method: Method.GET })=>{
     const { method, data } = options;
 
     return new Promise((resolve, reject) => {
@@ -61,5 +63,5 @@ export default class HTTPTransport {
         xhr.send(data);
       }
     });
-  }
+  };
 }

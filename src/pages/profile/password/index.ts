@@ -15,7 +15,7 @@ export class ProfilePassword extends Block {
 
   _onFocusChange(event: Event) {
     const element = event.target as HTMLInputElement;
-    if (!isValid(element)) {
+    if (!isValid(element).valid) {
       element.classList.add(this.props.styles['input-error']);
       element.previousElementSibling?.classList.add(this.props.styles['input-error']);
     } else {
@@ -88,7 +88,7 @@ export class ProfilePassword extends Block {
           let isFormValid = true;
           inputs.map((input) => {
             const el = input.element as HTMLInputElement;
-            if (!isValid(el)) {
+            if (!isValid(el).valid) {
               isFormValid = false;
               el.classList.add(this.props.styles['input-error']);
               el.previousElementSibling?.classList.add(this.props.styles['input-error']);

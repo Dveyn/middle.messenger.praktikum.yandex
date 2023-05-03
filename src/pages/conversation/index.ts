@@ -31,7 +31,7 @@ export class Conversation extends Block {
           let isFormValid = true;
           inputs.map((input) => {
             const el = input.element as HTMLInputElement;
-            if (!isValid(el)) {
+            if (!isValid(el).valid) {
               isFormValid = false;
               el.classList.add(this.props.styles['input-error']);
             } else {
