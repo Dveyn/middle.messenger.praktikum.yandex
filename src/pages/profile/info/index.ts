@@ -4,9 +4,9 @@ import compile from '../../../utils/compile';
 
 import { Link, Avatar } from '../../../components';
 import { renderDOM } from '../../../utils/renderDom';
-
+import { typeProps } from '../../../type/typeClass';
 export class ProfileInfo extends Block {
-  constructor(props: any) {
+  constructor(props: typeProps) {
     super('div', props);
   }
 

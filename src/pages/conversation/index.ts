@@ -4,9 +4,11 @@ import compile from '../../utils/compile';
 
 import { Link, Input } from '../../components';
 import { isValid } from '../../utils/validator';
+import { typeProps } from '../../type/typeClass';
 
 export class Conversation extends Block {
-  constructor(props: any) {
+  constructor(props: typeProps) {
+    console.log("conversation ", props);
     super('div', props);
   }
 
