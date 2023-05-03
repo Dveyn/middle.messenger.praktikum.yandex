@@ -8,9 +8,11 @@ import { renderDOM } from '../../utils/renderDom';
 
 export class Chat extends Block {
   constructor(props: any) {
+    console.log(props);
     super('div', props);
   }
 
+  
   _onFocusChange(event: Event) {
     const element = event.target as HTMLInputElement;
     if (!isValid(element).valid) {

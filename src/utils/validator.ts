@@ -5,7 +5,6 @@ const validationRules: Record<string, RegExp> = {
   password: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,40}$/,
   phone: /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s./0-9]*$/,
   email: /^[^\s@]+@[^\s@]+\.[\S]{2,}$/,
-  name: /^[A-ZА-ЯЁ][а-яА-ЯёЁa-zA-Z-]+$/,
   message: /.+/,
 };
 const errorMessages: Record<string, string> = {
@@ -32,7 +31,6 @@ interface ValidationResult {
 
 export function isValid(element: HTMLInputElement): ValidationResult {
   const eValidationType = element.dataset.validation;
-  console.log(eValidationType);
 
   if (!eValidationType || !(eValidationType in validationRules)) {
     return { valid: true };
