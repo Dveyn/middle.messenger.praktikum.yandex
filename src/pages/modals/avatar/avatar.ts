@@ -2,9 +2,9 @@ import tmpl from './avatar.hbs';
 import Block from '../../../utils/block';
 import compile from '../../../utils/compile';
 import { Button } from '../../../components';
-
+import { typeProps } from '../../../type/typeClass';
 export class ModalAvatar extends Block {
-  constructor(props: any) {
+  constructor(props: typeProps) {
     super('div', {
       ...props,
       events: {

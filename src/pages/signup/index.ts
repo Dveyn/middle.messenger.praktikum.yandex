@@ -6,15 +6,16 @@ import { Label, Input, Button } from '../../components';
 import compile from '../../utils/compile';
 import { isValid } from '../../utils/validator';
 import { renderDOM } from '../../utils/renderDom';
+import { typeProps } from '../../type/typeClass';
 
 export class Signup extends Block {
-  constructor(props: any) {
+  constructor(props: typeProps) {
     super('div', props);
   }
 
   _onFocusChange(event: Event) {
     const element = event.target as HTMLInputElement;
-    if (!isValid(element)) {
+    if (!isValid(element).valid) {
       element.classList.add(this.props.styles['input-error']);
     } else {
       element.classList.remove(this.props.styles['input-error']);
@@ -116,7 +117,7 @@ export class Signup extends Block {
           let isFormValid = true;
           inputs.map((input) => {
             const el = input.element as HTMLInputElement;
-            if (!isValid(el)) {
+            if (!isValid(el).valid) {
               isFormValid = false;
               el.classList.add(this.props.styles['input-error']);
             } else {

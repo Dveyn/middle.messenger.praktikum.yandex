@@ -2,7 +2,7 @@ import tmpl from './login.hbs';
 import Block from '../../utils/block';
 import compile from '../../utils/compile';
 
-import { Label, Input, Button } from '../../components';
+import { Label, Input, Button, ErrorInput } from '../../components';
 import { isValid } from '../../utils/validator';
 import { renderDOM } from '../../utils/renderDom';
 
@@ -13,11 +13,23 @@ export class Login extends Block {
 
   private _onFocusChange(event: Event) {
     const element = event.target as HTMLInputElement;
-    console.log(this.props.styles)
-    if (!isValid(element)) {
+    const validationResult = isValid(element);
+    if (!validationResult.valid) {
       element.classList.add(this.props.styles['input-error']);
+      const prevError = element.nextElementSibling as ErrorInput;
+      if (prevError && prevError.parentNode) {
+        prevError.parentNode.removeChild(prevError);
+      }
+      
+      const error = new ErrorInput({ text:validationResult.reason, class: this.props.styles['input-error'] });
+      element.insertAdjacentElement('afterend', error.getContent());
     } else {
       element.classList.remove(this.props.styles['input-error']);
+      const prevError = element.nextElementSibling as ErrorInput;
+      if (prevError && prevError.parentNode) {
+        prevError.parentNode.removeChild(prevError);
+      }
+      
     }
   }
 
@@ -57,7 +69,8 @@ export class Login extends Block {
           let isFormValid = true;
           inputs.map((input) => {
             const el = input.element as HTMLInputElement;
-            if (!isValid(el)) {
+            if (!isValid(el).valid) {
+
               isFormValid = false;
               el.classList.add(this.props.styles['input-error']);
             } else {

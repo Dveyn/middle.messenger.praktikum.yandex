@@ -4,9 +4,11 @@ import compile from '../../utils/compile';
 
 import { Link, Input } from '../../components';
 import { isValid } from '../../utils/validator';
+import { typeProps } from '../../type/typeClass';
 
 export class Conversation extends Block {
-  constructor(props: any) {
+  constructor(props: typeProps) {
+    console.log("conversation ", props);
     super('div', props);
   }
 
@@ -31,7 +33,7 @@ export class Conversation extends Block {
           let isFormValid = true;
           inputs.map((input) => {
             const el = input.element as HTMLInputElement;
-            if (!isValid(el)) {
+            if (!isValid(el).valid) {
               isFormValid = false;
               el.classList.add(this.props.styles['input-error']);
             } else {

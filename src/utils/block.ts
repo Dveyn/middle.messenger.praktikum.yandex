@@ -1,7 +1,8 @@
 import { v4 as makeUUID } from 'uuid';
 import EventBus from './eventbus';
 
-export default class Block {
+export default abstract class Block <Props extends Record<string, any> = unknown> {
+    
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -9,19 +10,13 @@ export default class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  _element: HTMLElement;
-
-  _meta: Object = {};
-
-  props: any;
-
   _id = '';
 
   eventBus: (() => EventBus);
 
   constructor(
     tagName = 'div',
-    props: any,
+    props: Props,
   ) {
     const eventBus = new EventBus();
     this._meta = {
