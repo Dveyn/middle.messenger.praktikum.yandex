@@ -2,13 +2,12 @@ import tmpl from './conversation.hbs';
 import Block from '../../utils/block';
 import compile from '../../utils/compile';
 
-import { Link, Input } from '../../components';
+import { Link, Input, ErrorInput } from '../../components';
 import { isValid } from '../../utils/validator';
 import { typeProps } from '../../type/typeClass';
 
 export class Conversation extends Block {
   constructor(props: typeProps) {
-    console.log("conversation ", props);
     super('div', props);
   }
 
@@ -18,6 +17,7 @@ export class Conversation extends Block {
       class: `${this.props.styles.input} ${this.props.styles['input-conversation-message-box']}`,
       name: 'message',
       placeholder: 'Сообщение',
+      validationType: 'message',
     });
 
     const linkSend = new Link({
@@ -33,14 +33,29 @@ export class Conversation extends Block {
           let isFormValid = true;
           inputs.map((input) => {
             const el = input.element as HTMLInputElement;
-            if (!isValid(el).valid) {
+            const validationResult = isValid(el);
+            if (!validationResult.valid) {
               isFormValid = false;
               el.classList.add(this.props.styles['input-error']);
+
+              const prevError = el.nextElementSibling as ErrorInput;
+              if (prevError && prevError.parentNode) {
+                prevError.parentNode.removeChild(prevError);
+              }
+
+              const error = new ErrorInput({ text: validationResult.reason, 
+                class: this.props.styles['input-error'] });
+                el.insertAdjacentElement('afterend', error.getContent());
             } else {
               const name = el.getAttribute('name');
               const { value } = el;
               if (name) {
                 formData[name] = value;
+              }
+              el.classList.remove(this.props.styles['input-error']);
+              const prevError = el.nextElementSibling as ErrorInput;
+              if (prevError && prevError.parentNode) {
+                prevError.parentNode.removeChild(prevError);
               }
             }
           });
