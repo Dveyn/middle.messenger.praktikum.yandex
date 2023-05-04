@@ -16,12 +16,23 @@ export class Chat extends Block {
 
     _onFocusChange(event: Event) {
         const element = event.target as HTMLInputElement;
-        if (!isValid(element).valid) {
+        const validationResult = isValid(element);
+        if (!validationResult.valid) {
             if (!element.classList.contains(this.props.styles['input-error'])) {
                 element.classList.add(this.props.styles['input-error']);
             }
+            if (prevError && prevError.parentNode) {
+                prevError.parentNode.removeChild(prevError);
+            }
+
+            const error = new ErrorInput({ text: validationResult.reason, class: this.props.styles['input-error'] });
+            element.insertAdjacentElement('afterend', error.getContent());
         } else {
             element.classList.remove(this.props.styles['input-error']);
+            const prevError = element.nextElementSibling as ErrorInput;
+            if (prevError && prevError.parentNode) {
+              prevError.parentNode.removeChild(prevError);
+            }
         }
     }
 

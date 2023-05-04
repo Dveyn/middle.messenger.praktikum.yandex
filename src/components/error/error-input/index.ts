@@ -15,7 +15,6 @@ export class ErrorInput extends Block {
   }
 
   render() {
-    console.log(this.props.text);
     return compile(tmpl, {
       styles,
       ...this.props,
