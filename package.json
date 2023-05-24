@@ -1,11 +1,15 @@
 {
-  "name": "sprint_1",
+  "name": "sprint_2",
   "version": "1.0.0",
   "description": "",
   "scripts": {
     "dev": "rm -rf dist/* && parcel src/*.html --no-cache  --port 3000",
     "build": "parcel build src/*.html --no-cache ",
-    "start": "npm run build  && node ./server.js"
+    "start": "npm run build  && node ./server.ts",
+    "eslint": "eslint . --ext .ts,.js",
+    "eslint:fix": "eslint . --ext .ts,.js --fix",
+    "lint:styles": "stylelint \"src/**/*.scss\"",
+    "lint:fix": "stylelint \"src/**/*.scss\" --fix"
   },
   "engines": {
     "node": ">=12"
@@ -18,18 +22,32 @@
     }
   },
   "dependencies": {
-    "handlebars": "^4.7.7"
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "handlebars": "^4.7.7",
+    "postcss-extend-rule": "^4.0.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@parcel/config-default": "^2.0.1",
     "@parcel/resolver-glob": "^2.0.1",
     "@parcel/transformer-sass": "^2.0.1",
-    "autoprefixer": "^10.4.0",
+    "@types/node": "^18.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
     "express": "^4.17.1",
     "parcel": "^2.0.1",
     "parcel-transformer-hbs": "^1.0.4",
     "postcss": "^8.4.1",
+    "postcss-import": "^15.1.0",
     "postcss-modules": "^4.3.1",
-    "sass": "^1.43.5"
+    "postcss-nesting": "^11.2.2",
+    "stylelint": "^15.6.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-scss": "^4.7.0",
+    "typescript": "^5.0.4"
   }
 }
