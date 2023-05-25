@@ -1,14 +1,47 @@
 import tmpl from './login.hbs';
-import Block from '../../utils/block';
 import compile from '../../utils/compile';
 
-import { Label, Input, Button, ErrorInput } from '../../components';
+import { Label, Input, Button, ErrorMessage, ErrorInput } from '../../components';
 import { isValid } from '../../utils/validator';
-import { renderDOM } from '../../utils/renderDom';
+import GlobalEventBus from '../../utils/globaleventbus';
+import Page, { PageProps } from '../../utils/page';
 
-export class Login extends Block {
-  constructor(props: any) {
+
+
+export class Login extends Page {
+
+  private _errorMessage: ErrorMessage;
+
+  constructor(props: PageProps) {
     super('div', props);
+    this.g.EventBus.on(GlobalEventBus.EVENTS.VALIDATE_LOGIN_FAILED, this._onValidateLoginFailed.bind(this));
+    this.g.EventBus.on(GlobalEventBus.EVENTS.ACTION_LOGIN_FAILED, this._onActionLoginFailed.bind(this));
+    this.g.EventBus.on(GlobalEventBus.EVENTS.ACTION_LOGIN_SUCCEED, this._onActionLoginSucceed.bind(this));
+  }
+
+  private _onValidateLoginFailed(formData: { [index: string]: any }) {
+
+    Object.keys(formData).forEach(key => {
+      if (!formData[key].isValid) {
+        const element = document.querySelector(`input[name=${key}]`);
+        element?.classList.add(this.props.styles['input-error']);
+      }
+    });
+    throw new Error('Validation Error');
+  }
+
+  private _onActionLoginSucceed() {
+    this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_GETUSER);
+    this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_GETCHATS);
+  }
+
+  private _onActionLoginFailed(data: XMLHttpRequest) {
+    const text = JSON.parse(data.responseText).reason;
+    this._errorMessage.setProps({
+      'text': text,
+      'class': this.props.styles.error,
+    });
+    console.log('Error on login: ', text);
   }
 
   private _onFocusChange(event: Event) {
@@ -34,6 +67,7 @@ export class Login extends Block {
   }
 
   render() {
+
     const inputLogin = new Input({
       type: 'text',
       class: `${this.props.styles.input} ${this.props.styles['input-login']}`,
@@ -43,6 +77,10 @@ export class Login extends Block {
         blur: this._onFocusChange.bind(this),
         focus: this._onFocusChange.bind(this),
       },
+    });
+
+    const errorMessage = new ErrorMessage({
+      class: `${this.props.styles.error} ${this.props.styles['error-hide']}`,
     });
 
     const inputPassword = new Input({
@@ -65,25 +103,12 @@ export class Login extends Block {
 
           const inputs = [inputLogin, inputPassword];
 
-          const formData: { [index: string]: any } = {};
-          let isFormValid = true;
-          inputs.map((input) => {
-            const el = input.element as HTMLInputElement;
-            if (!isValid(el).valid) {
+          try {
+            this.g.EventBus.emit(GlobalEventBus.EVENTS.VALIDATE_LOGIN, inputs);
+            this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_LOGIN, inputs, '/chats');
 
-              isFormValid = false;
-              el.classList.add(this.props.styles['input-error']);
-            } else {
-              const name = el.getAttribute('name');
-              const { value } = el;
-              if (name) {
-                formData[name] = value;
-              }
-            }
-          });
-          if (isFormValid) {
-            console.log(formData);
-            renderDOM('#app', this.props.buttonClickLogin);
+          } catch (error) {
+            console.log('Error caught', error);
           }
         },
       },
@@ -92,7 +117,10 @@ export class Login extends Block {
       text: 'Нет аккаунта?',
       class: `${this.props.styles.button} ${this.props.styles['login-form-button-secondary']}`,
       events: {
-        click: (e) => { e.preventDefault(); renderDOM('#app', this.props.buttonClickSignup); },
+        click: (e) => {
+          e.preventDefault();
+          this.props.router.go('/signup');
+        },
       },
     });
 
@@ -105,6 +133,8 @@ export class Login extends Block {
       class: `${this.props.styles.label} ${this.props.styles['form-label']}`,
     });
 
+    this._errorMessage = errorMessage;
+
     return compile(tmpl, {
       styles: this.props.styles,
       buttonLogin,
@@ -113,6 +143,7 @@ export class Login extends Block {
       labelPassword,
       inputLogin,
       inputPassword,
+      errorMessage,
     });
   }
 }

@@ -7,6 +7,7 @@
     display: flex;
     flex-grow: 0;
     flex-shrink: 0;
+
     width: 64px;
     background-color: #fbfbfb;
     border-right: 1px solid #eaeaea;
@@ -27,6 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     flex-basis: 510px;
     margin: auto;
 }
@@ -47,23 +49,28 @@
 .profile-change-avatar-container {
     display:flex;
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: 0;
     border-radius: 50%;
-    background: rgb(29 106 154 / 72%);
+    background: rgba(29, 106, 154, 0.72);
     visibility: hidden;
     opacity: 0;
+    
     transition: opacity .2s, visibility .2s;    
 }
 
 .profile-change-avatar-text {
     margin: auto;
-    font-family: Helvetica, sans-serif;
+
+    font-family: $font-family;
     font-style: normal;
     font-size: 13px;
     line-height: 14px;
     text-align: center;
-    color: #fff;
+    color: #FFFFFF;
 }
 
 .profile-avatar-wrapper:hover .profile-change-avatar-container {
@@ -73,16 +80,15 @@
 
 .profile-display-name {
     margin: 20px;
-    font-family: Helvetica, sans-serif;
+
+    font-family: $font-family;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 16px;
-
     /* identical to box height, or 100% */
     color: #1e1e1e;
 }
-
 .profile-info-fields-container {
     width: 100%;
     padding: 20px 0;
@@ -90,20 +96,18 @@
 
 .profile-info-field {
     display: flex;
-    flex-wrap: wrap;
     align-items: stretch;
     width: 100%;
     box-sizing: border-box;
-    padding: 10px 0;
+    padding: 10px 0 10px 0;
     border-bottom: 1px solid #eaeaea;
-
     &:last-of-type {
         border: 0;
     }
 }
 
 .profile-info-field-name {
-    font-family: Helvetica, sans-serif;
+    font-family: $font-family;
     font-style: normal;
     font-size: 13px;
     line-height: 13px;
@@ -114,47 +118,44 @@
 .profile-info-field-value {
     flex-grow: 1;
     flex-shrink: 1;
-    font-family: Helvetica, sans-serif;
+
+    font-family: $font-family;
     font-style: normal;
     font-size: 13px;
     line-height: 13px;
     text-align: right;
-    color: #999;
+    color: #999999;
 }
 
 .profile-info-link {
     width: 100%;
     box-sizing: border-box;
-    padding: 10px 0;
+    padding: 10px 0 10px 0;
     border-bottom: 1px solid #eaeaea;
-
     &:last-of-type {
         border: 0;
     }
 }
-
 .profile-info-link-change-info {
-    font-family: Helvetica, sans-serif;
+    font-family: $font-family;
     font-style: normal;
     font-size: 13px;
     line-height: 13px;
     color: #3369f3;
 }
-
 .profile-info-link-change-password {
-    font-family: Helvetica, sans-serif;
+    font-family: $font-family;
     font-style: normal;
     font-size: 13px;
     line-height: 13px;
     color: #3369f3;
 }
-
 .profile-info-link-exit {
-    font-family: Helvetica, sans-serif;
+    font-family: $font-family;
     font-style: normal;
     font-size: 13px;
     line-height: 13px;
-    color: #f00;
+    color: #FF0000;
 }
 
 .form-profile-spacer {
