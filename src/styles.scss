@@ -1,11 +1,11 @@
-@import url("components/index.scss");
-@import url("pages/index.scss");
+@import url('components/index.scss');
+@import url('pages/index.scss');
 
 .auth-popup {
     margin: auto;
     width: 340px;
     background: #fff;
-    box-shadow: 0 0 6px #00000024;
+    box-shadow: 0 0 6px rgb(0 0 0 / 14%);
     border-radius: 12px;
 }
 
@@ -14,13 +14,14 @@
 }
 
 .auth-header {
-    font-family: Helvetica, sans-serif;
+   font-family: Helvetica, sans-serif;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
     letter-spacing: 0;
     text-align: center;
+
 }
 
 .form {
