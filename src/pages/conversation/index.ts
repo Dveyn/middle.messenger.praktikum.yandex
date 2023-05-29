@@ -201,7 +201,7 @@ export class Conversation extends Page {
               el.classList.add(this.props.styles['input-error']);
 
               const prevError = el.nextElementSibling as ErrorInput;
-              if (prevError && prevError.parentNode) {
+              if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
                 prevError.parentNode.removeChild(prevError);
               }
 
@@ -218,7 +218,7 @@ export class Conversation extends Page {
               }
               el.classList.remove(this.props.styles['input-error']);
               const prevError = el.nextElementSibling as ErrorInput;
-              if (prevError && prevError.parentNode) {
+              if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
                 prevError.parentNode.removeChild(prevError);
               }
             }

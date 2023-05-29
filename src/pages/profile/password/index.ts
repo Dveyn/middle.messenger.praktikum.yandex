@@ -70,7 +70,7 @@ export class ProfilePassword extends Page {
         element.classList.add(this.props.styles['input-error']);
         element.previousElementSibling?.classList.add(this.props.styles['input-error']);
         const prevError = element.nextElementSibling as ErrorInput;
-        if (prevError && prevError.parentNode) {
+        if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
           prevError.parentNode.removeChild(prevError);
         }
         
@@ -80,7 +80,7 @@ export class ProfilePassword extends Page {
             element.classList.remove(this.props.styles['input-error']);
       element.previousElementSibling?.classList.remove(this.props.styles['input-error']);
       const prevError = element.nextElementSibling as ErrorInput;
-      if (prevError && prevError.parentNode) {
+      if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
         prevError.parentNode.removeChild(prevError);
       }
     }
