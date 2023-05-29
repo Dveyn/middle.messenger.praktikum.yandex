@@ -207,7 +207,7 @@ export class Conversation extends Page {
 
               const error = new ErrorInput({
                 text: validationResult.reason,
-                class: this.props.styles['input-error']
+                class: this.props.styles['input-error'],
               });
               el.insertAdjacentElement('afterend', error.getContent());
             } else {

@@ -1,4 +1,4 @@
-import HTTPTransport from './HTTPTransport';
+import HTTPTransport from './index';
 import { expect } from 'chai';
 
 global.XMLHttpRequest = require('xhr2');

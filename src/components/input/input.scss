@@ -1,14 +1,14 @@
 .input {
-    font-family: $font-family;
+   font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 13px;
     line-height: 2;
     border: 0;
     border-bottom: 1px solid #3369f3;
     width: 280px;
-
     color: #1e1e1e;
     margin-bottom: 16px;
+
     &:focus {
         outline: none;
     }

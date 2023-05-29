@@ -3,16 +3,12 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: stretch;
-
     flex-basis: 100%;
 }
 
 .chat-left-container {
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 310px;
+    flex: 0 0 310px;
     background-color: #fbfbfb;
-
     display: flex;
     flex-direction: column;    
 }
@@ -31,28 +27,30 @@
     flex-shrink: 1;
 
 }
+
 .chat-stub {
     margin: auto;
-    font-family: $font-family;
+   font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 12px;
     line-height: 12px;
     text-align: center;
-    color: #999999;
+    color: #999;
 }
 
 .profile-link-container {
-    font-family: $font-family;
+   font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 12px;
     line-height: 12px;
     text-align: right;
-    color: #999999;
+    color: #999;
     padding: 21px 10px;
 }
 
 .link-profile-open {
     display: inline;
+
     &:hover {
         cursor: pointer;
     }
@@ -64,13 +62,12 @@
 }
 
 .search-container-placeholder {
-
     display: inline-block;
-    font-family: $font-family;
+   font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 12px;
     line-height: 32px;
-    color: #999999;
+    color: #999;
     position: absolute;
     left: 100px;
     height: 32px;
@@ -80,7 +77,7 @@
 .search-icon {
     margin: auto;
     height: 10px;
-    opacity: 50%;
+    opacity: 0.5;
 }
 
 .input-search-box {
@@ -101,23 +98,23 @@
     display: flex;
     justify-content: center;
     align-items: center;    
-    margin: 10px auto 10px   auto;
+    margin: 10px auto;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     background-color: #3369f3; 
     cursor: pointer;   
-    font-family: $font-family;
+   font-family: Helvetica, sans-serif;
     font-size: 20;    
     color: white;
+
     &:hover {
         background-color: $primary-background-hover;
     }
 }
 
 .link-add-chat {
-
-    font-family: $font-family;
+   font-family: Helvetica, sans-serif;
     font-size: 20;    
     color: white;
 }

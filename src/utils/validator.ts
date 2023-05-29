@@ -35,7 +35,7 @@ interface ValidationResult {
 
 export function isValid(element: HTMLInputElement): ValidationResult {
   const eValidationType = element.dataset.validation;
-    console.log(eValidationType);
+  console.log(eValidationType);
     
   if (!eValidationType || !(eValidationType in VALIDATION_RULES)) {
     return { valid: true };

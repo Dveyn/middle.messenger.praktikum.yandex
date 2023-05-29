@@ -1,6 +1,6 @@
 import tmpl from './password.hbs';
 import {
-  Label, Input, Button, Link, ErrorMessage, AvatarImage, ErrorInput
+  Label, Input, Button, Link, ErrorMessage, AvatarImage, ErrorInput,
 } from '../../../components';
 
 import compile from '../../../utils/compile';
@@ -67,17 +67,17 @@ export class ProfilePassword extends Page {
     const element = event.target as HTMLInputElement;
     const validationResult = isValid(element);
     if (!validationResult.valid) {
-        element.classList.add(this.props.styles['input-error']);
-        element.previousElementSibling?.classList.add(this.props.styles['input-error']);
-        const prevError = element.nextElementSibling as ErrorInput;
-        if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
-          prevError.parentNode.removeChild(prevError);
-        }
+      element.classList.add(this.props.styles['input-error']);
+      element.previousElementSibling?.classList.add(this.props.styles['input-error']);
+      const prevError = element.nextElementSibling as ErrorInput;
+      if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
+        prevError.parentNode.removeChild(prevError);
+      }
         
-        const error = new ErrorInput({ text:validationResult.reason, class: this.props.styles['input-error'] });
-        element.insertAdjacentElement('afterend', error.getContent());
+      const error = new ErrorInput({ text:validationResult.reason, class: this.props.styles['input-error'] });
+      element.insertAdjacentElement('afterend', error.getContent());
     } else {
-            element.classList.remove(this.props.styles['input-error']);
+      element.classList.remove(this.props.styles['input-error']);
       element.previousElementSibling?.classList.remove(this.props.styles['input-error']);
       const prevError = element.nextElementSibling as ErrorInput;
       if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
