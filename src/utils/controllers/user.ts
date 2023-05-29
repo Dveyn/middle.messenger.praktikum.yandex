@@ -41,7 +41,6 @@ export default class UserController {
     try {
       this._authAPI.logout();
 
-      // TODO: Переделать через EventBus
       if (successPath) {
         this._router.go(successPath);
       }
@@ -51,7 +50,6 @@ export default class UserController {
 
   }
 
-  // TODO: Избавиться от Input
   public async login(inputs: Input[], successPath: string) {
     const user: LoginRequest = { login: '', password: '' };
 
@@ -62,8 +60,6 @@ export default class UserController {
 
     try {
       await this._authAPI.login(user);
-
-      // TODO: Переделать через EventBus
       this._router.go(successPath);
 
       GlobalEventBus.instance.EventBus.emit(GlobalEventBus.EVENTS.ACTION_LOGIN_SUCCEED);

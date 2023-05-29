@@ -5,7 +5,7 @@ import compile from '../../utils/compile';
 interface LinkProps {
   text?: string,
   class?: string,
-  imagesAlt: string,
+  imagesAlt?: string,
   imageBeforeClass?: string,
   imageBeforeSrc?: string,
   imageAfterClass?: string,

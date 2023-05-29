@@ -70,9 +70,10 @@ export class Chat extends Page {
 
       let timeString = '';
       if (chat.last_message?.time) {
-        // TODO: Сформировать корректный формат времени последнего сообщения
         const time = new Date(chat.last_message.time);
-        timeString = `${time.getHours()}:${time.getMinutes()}`;
+        const hours = String(time.getHours()).padStart(2, '0');
+        const minutes = String(time.getMinutes()).padStart(2, '0');
+        timeString = `${hours}:${minutes}`;
       }
       const textString = chat.last_message?.content ? chat.last_message.content : '';
 
@@ -108,11 +109,11 @@ export class Chat extends Page {
   private _onFocusChange(event: Event) {
     const element = event.target as HTMLInputElement;
     if (!isValid(element).valid) {
-        if (!element.classList.contains(this.props.styles['input-error'])) {
-            element.classList.add(this.props.styles['input-error']);
-        }
+      if (!element.classList.contains(this.props.styles['input-error'])) {
+        element.classList.add(this.props.styles['input-error']);
+      }
     } else {
-        element.classList.remove(this.props.styles['input-error']);
+      element.classList.remove(this.props.styles['input-error']);
     }
   }
 
