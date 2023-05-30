@@ -67,7 +67,8 @@ export class Chat extends Page {
     const chats: ChatInfoData[] = JSON.parse(xhr.responseText);
 
     chats.forEach((chat) => {
-
+        console.log(chat);
+        
       let timeString = '';
       if (chat.last_message?.time) {
         const time = new Date(chat.last_message.time);

@@ -55,5 +55,15 @@ export default class ChatAPI {
   public async getUsers(chatId: number) {
     const response = await this._API.get(`/chats/${chatId}/users`);
     return response;
-  }    
+  }
+    
+  public async changeAvatar(data: FormData) {
+    const response = await this._API.put('/chats/avatar', { 
+      data, 
+      headers: { 
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response;
+  }
 }

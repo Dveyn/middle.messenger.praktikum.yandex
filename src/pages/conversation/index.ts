@@ -61,9 +61,12 @@ export class Conversation extends Page {
     users.forEach((user) => {
 
       let avatar = this.props.icons.user;
+     
       if (user.avatar) {
         avatar = config.resourceUrl + user.avatar;
       }
+
+      console.log(avatar);
       const displayName = user.display_name
         ? user.display_name
         : `${user.first_name} ${user.second_name}`;

@@ -5,7 +5,7 @@ export interface PageProps {
   styles?: Record<string, any>,
   icons?: Record<string, any>,
   images?: Record<string, any>,
-  router?: Router,
+  router?: Router
 }
 
 export default class Page extends Block {
