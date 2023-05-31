@@ -110,7 +110,7 @@ export class Login extends Page {
       events: {
         click: (e) => {
           e.preventDefault();
-          this.props.router.go('/signup');
+          this.props.router.go('/sign-up');
         },
       },
     });

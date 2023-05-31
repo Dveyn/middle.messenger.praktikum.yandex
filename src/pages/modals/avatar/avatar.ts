@@ -13,9 +13,6 @@ export class ModalAvatar extends Page {
       },
     });
 
-    
-    console.log(this.props.type);
-    
     this.g.EventBus.on(
       GlobalEventBus.EVENTS.ACTION_CHANGEAVATAR_FAILED,
       this.onChangeAvatarFailed.bind(this));
@@ -53,7 +50,7 @@ export class ModalAvatar extends Page {
               text: fileElement.files[0].name,
               class: this.props.styles['avatar-modal-file'],
             });
-          }            
+          }
         },
       },
     });
@@ -81,6 +78,7 @@ export class ModalAvatar extends Page {
           console.log(fileElement.files);
           if (fileElement.files) {
             formData.append('avatar', fileElement.files[0]);
+
             try {
               this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_CHANGEAVATAR, formData);
             } catch (error) {

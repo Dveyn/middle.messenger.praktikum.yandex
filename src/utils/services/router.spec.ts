@@ -55,9 +55,9 @@ describe('Router', function () {
     expect(router.getRoute('/')).instanceOf(Route);
   });
 
-  it('Should add "/signup" page to routes list', function () {
-    router.use('/signup', signup);
-    expect(router.getRoute('/signup')).instanceOf(Route);
+  it('Should add "/sign-up" page to routes list', function () {
+    router.use('/sign-up', signup);
+    expect(router.getRoute('/sign-up')).instanceOf(Route);
   });
 
   it('Should go to Login page', function () {
@@ -65,7 +65,7 @@ describe('Router', function () {
     expect(router.getCurrentRoute()._block).instanceOf(Login);
   });
   it('Should go to Signup page', function () {
-    router.go('/signup');
+    router.go('/sign-up');
     expect(router.getCurrentRoute()._block).instanceOf(Signup);
   });
   it('and affect history length', () => {

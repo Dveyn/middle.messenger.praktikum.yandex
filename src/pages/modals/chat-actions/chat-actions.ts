@@ -31,20 +31,6 @@ export class ChatActions extends Page {
   }
 
   render() {
-
-    const linkChangeAvatar = new Link({
-      class: `${this.props.styles.link} ${this.props.styles['chat-actions-element']}`,
-      imageBeforeSrc: this.props.icons.adduser,
-      imageBeforeClass: this.props.styles['chat-actions-icon'],
-      text: 'Изменить аватар чата',
-      events: {
-        click: () => {
-          const modalAvatar = new ModalAvatar(this.props);
-          renderDOM('#modal', modalAvatar);
-        },
-      },
-    });
-
     const linkAddChatUser = new Link({
       class: `${this.props.styles.link} ${this.props.styles['chat-actions-element']}`,
       imageBeforeSrc: this.props.icons.adduser,
