@@ -96,7 +96,7 @@ export class Login extends Page {
 
           try {
             this.g.EventBus.emit(GlobalEventBus.EVENTS.VALIDATE_LOGIN, inputs);
-            this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_LOGIN, inputs, '/chats');
+            this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_LOGIN, inputs, '/messenger');
 
           } catch (error) {
             console.log('Error caught', error);

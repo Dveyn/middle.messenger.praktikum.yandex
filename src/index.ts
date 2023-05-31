@@ -109,5 +109,3 @@ router
 
 
 g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_INIT);
-
-

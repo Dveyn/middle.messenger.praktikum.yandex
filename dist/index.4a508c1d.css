@@ -515,6 +515,7 @@
   width: 64px;
   background-color: #fbfbfb;
   border-right: 1px solid #eaeaea;
+  flex-wrap: wrap;
   flex-grow: 0;
   flex-shrink: 0;
   display: flex;
@@ -662,6 +663,7 @@
   width: 64px;
   background-color: #fbfbfb;
   border-right: 1px solid #eaeaea;
+  flex-wrap: wrap;
   flex-grow: 0;
   flex-shrink: 0;
   display: flex;
@@ -700,6 +702,7 @@
   width: 64px;
   background-color: #fbfbfb;
   border-right: 1px solid #eaeaea;
+  flex-wrap: wrap;
   flex-grow: 0;
   flex-shrink: 0;
   display: flex;

@@ -605,10 +605,10 @@ function onGetUserSucceed(xhr) {
     const d = JSON.parse(xhr.responseText);
     user.setData(d);
     g.EventBus.emit((0, _globaleventbusDefault.default).EVENTS.USERDATA_UPDATED, user);
-    router.go(window.location.pathname === "/" ? "/chats" : window.location.pathname);
+    router.go(window.location.pathname === "/" ? "/messenger" : window.location.pathname);
 }
 function onGetUserFailed() {
-    router.go(window.location.pathname === "/signup" ? "/signup" : "/");
+    router.go(window.location.pathname === "/sign-up" ? "/sign-up" : "/");
 }
 g.EventBus.on((0, _globaleventbusDefault.default).EVENTS.ACTION_INIT, userController.init.bind(userController));
 g.EventBus.on((0, _globaleventbusDefault.default).EVENTS.ACTION_GETUSER, userController.getUser.bind(userController));
@@ -640,7 +640,7 @@ g.EventBus.on((0, _globaleventbusDefault.default).EVENTS.ACTION_GETCHATUSERS, ch
 g.EventBus.on((0, _globaleventbusDefault.default).EVENTS.VALIDATE_CREATECHAT, (0, _validator.validateCreateChat));
 g.EventBus.on((0, _globaleventbusDefault.default).EVENTS.ACTION_CREATECHAT, chatController.createChat.bind(chatController));
 g.EventBus.on((0, _globaleventbusDefault.default).EVENTS.ACTION_CONNECTCHAT, messagesController.connectChat.bind(messagesController));
-router.use("/", login).use("/signup", signup).use("/chats", chat).use("/settings", profileInfo).use("/settings-change", profileChange).use("/settings-password", profilePassword).start();
+router.use("/", login).use("/sign-up", signup).use("/messenger", chat).use("/settings", profileInfo).use("/settings-change", profileChange).use("/settings-password", profilePassword).start();
 g.EventBus.emit((0, _globaleventbusDefault.default).EVENTS.ACTION_INIT);
 
 },{"./pages":"kIGWd","./styles.scss":"lHHg5","../static/images/avatar04.png":"bwDBm","../static/icons/*.svg":"hWESu","../static/icons/*.png":"1bjm9","./utils/services/router":"9kXaW","./utils/validator":"crxki","./utils/globaleventbus":"650P3","./utils/user":"1XbwN","./utils/controllers/user":"5OHdU","./utils/controllers/chat":"ce6ox","./utils/controllers/messages":"1x8HF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kIGWd":[function(require,module,exports) {
@@ -747,7 +747,7 @@ class Login extends (0, _pageDefault.default) {
                     ];
                     try {
                         this.g.EventBus.emit((0, _globaleventbusDefault.default).EVENTS.VALIDATE_LOGIN, inputs);
-                        this.g.EventBus.emit((0, _globaleventbusDefault.default).EVENTS.ACTION_LOGIN, inputs, "/chats");
+                        this.g.EventBus.emit((0, _globaleventbusDefault.default).EVENTS.ACTION_LOGIN, inputs, "/messenger");
                     } catch (error) {
                         console.log("Error caught", error);
                     }
@@ -760,7 +760,7 @@ class Login extends (0, _pageDefault.default) {
             events: {
                 click: (e)=>{
                     e.preventDefault();
-                    this.props.router.go("/signup");
+                    this.props.router.go("/sign-up");
                 }
             }
         });
@@ -2963,6 +2963,7 @@ var _userDefault = parcelHelpers.interopDefault(_user);
 var _conversation = require("../conversation");
 var _page = require("../../utils/page");
 var _pageDefault = parcelHelpers.interopDefault(_page);
+var _config = require("../../utils/config");
 class Chat extends (0, _pageDefault.default) {
     constructor(props){
         super("div", props);
@@ -2993,9 +2994,11 @@ class Chat extends (0, _pageDefault.default) {
                 timeString = `${hours}:${minutes}`;
             }
             const textString = chat.last_message?.content ? chat.last_message.content : "";
+            let avatar = this.props.icons.user;
+            if (chat.avatar) avatar = (0, _config.config).resourceUrl + chat.avatar;
             this._chatInfos.push(new (0, _components.ChatInfo)({
                 title: chat.title,
-                avatar: chat.avatar ? chat.avatar : this.props.icons.conversation,
+                avatar: avatar,
                 text: textString,
                 imagesAlt: `Чат ${chat.title}`,
                 unread_count: chat.unread_count,
@@ -3074,7 +3077,7 @@ class Chat extends (0, _pageDefault.default) {
     }
 }
 
-},{"./chat.hbs":"dcbfM","../../utils/compile":"hStup","../../components":"dHnah","../../utils/validator":"crxki","../../utils/renderDom":"bcslR","../../utils/globaleventbus":"650P3","../modals":"gNlo4","../../utils/user":"1XbwN","../conversation":"dLYV5","../../utils/page":"jApZs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dcbfM":[function(require,module,exports) {
+},{"./chat.hbs":"dcbfM","../../utils/compile":"hStup","../../components":"dHnah","../../utils/validator":"crxki","../../utils/renderDom":"bcslR","../../utils/globaleventbus":"650P3","../modals":"gNlo4","../../utils/user":"1XbwN","../conversation":"dLYV5","../../utils/page":"jApZs","../../utils/config":"dAjWq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dcbfM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _handlebars = require("handlebars");
@@ -3569,6 +3572,7 @@ class ChatActions extends (0, _pageDefault.default) {
             }
         });
         return (0, _compileDefault.default)((0, _chatActionsHbsDefault.default), {
+            linkChangeAvatar,
             linkAddChatUser,
             linkDeleteChatUser,
             linkDeleteChat,
@@ -3592,8 +3596,8 @@ const templateFunction = (0, _handlebarsDefault.default).template({
             if (Object.prototype.hasOwnProperty.call(parent, propertyName)) return parent[propertyName];
             return undefined;
         };
-        return "<div class=" + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "modal-container") : stack1, depth0)) + ">\n    <div class=" + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "modal-popup-small") : stack1, depth0)) + ">\n        " + ((stack1 = (helper = (helper = lookupProperty(helpers, "linkAddChatUser") || (depth0 != null ? lookupProperty(depth0, "linkAddChatUser") : depth0)) != null ? helper : alias4, typeof helper === alias5 ? helper.call(alias3, {
-            "name": "linkAddChatUser",
+        return "<div class=" + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "modal-container") : stack1, depth0)) + ">\n    <div class=" + alias2(alias1((stack1 = depth0 != null ? lookupProperty(depth0, "styles") : depth0) != null ? lookupProperty(stack1, "modal-popup-small") : stack1, depth0)) + ">\n        " + ((stack1 = (helper = (helper = lookupProperty(helpers, "linkChangeAvatar") || (depth0 != null ? lookupProperty(depth0, "linkChangeAvatar") : depth0)) != null ? helper : alias4, typeof helper === alias5 ? helper.call(alias3, {
+            "name": "linkChangeAvatar",
             "hash": {},
             "data": data,
             "loc": {
@@ -3603,6 +3607,20 @@ const templateFunction = (0, _handlebarsDefault.default).template({
                 },
                 "end": {
                     "line": 3,
+                    "column": 32
+                }
+            }
+        }) : helper)) != null ? stack1 : "") + "\n        " + ((stack1 = (helper = (helper = lookupProperty(helpers, "linkAddChatUser") || (depth0 != null ? lookupProperty(depth0, "linkAddChatUser") : depth0)) != null ? helper : alias4, typeof helper === alias5 ? helper.call(alias3, {
+            "name": "linkAddChatUser",
+            "hash": {},
+            "data": data,
+            "loc": {
+                "start": {
+                    "line": 4,
+                    "column": 8
+                },
+                "end": {
+                    "line": 4,
                     "column": 31
                 }
             }
@@ -3612,11 +3630,11 @@ const templateFunction = (0, _handlebarsDefault.default).template({
             "data": data,
             "loc": {
                 "start": {
-                    "line": 4,
+                    "line": 5,
                     "column": 8
                 },
                 "end": {
-                    "line": 4,
+                    "line": 5,
                     "column": 34
                 }
             }
@@ -3626,11 +3644,11 @@ const templateFunction = (0, _handlebarsDefault.default).template({
             "data": data,
             "loc": {
                 "start": {
-                    "line": 5,
+                    "line": 6,
                     "column": 8
                 },
                 "end": {
-                    "line": 5,
+                    "line": 6,
                     "column": 30
                 }
             }
@@ -4167,6 +4185,7 @@ class Conversation extends (0, _pageDefault.default) {
         users.forEach((user)=>{
             let avatar = this.props.icons.user;
             if (user.avatar) avatar = (0, _config.config).resourceUrl + user.avatar;
+            console.log(avatar);
             const displayName = user.display_name ? user.display_name : `${user.first_name} ${user.second_name}`;
             chatUsers.push(new (0, _components.Image)({
                 src: avatar,
@@ -4291,7 +4310,13 @@ class Conversation extends (0, _pageDefault.default) {
                             if (prevError && prevError.parentNode && prevError instanceof (0, _components.ErrorInput)) prevError.parentNode.removeChild(prevError);
                         }
                     });
-                    isFormValid;
+                    //Мне внимательность нужно еще прокачать, закоментировал отправку и забыл про это
+                    if (isFormValid) try {
+                        this.g.EventBus.emit((0, _globaleventbusDefault.default).EVENTS.VALIDATE_SENDMESSAGE, inputs);
+                        this.g.EventBus.emit((0, _globaleventbusDefault.default).EVENTS.ACTION_SENDMESSAGE, inputs);
+                    } catch (error) {
+                        console.log("Error on send message: ", error);
+                    }
                 }
             }
         });
@@ -4453,7 +4478,7 @@ class ProfileInfo extends (0, _pageDefault.default) {
             imagesAlt: "Назад",
             events: {
                 click: ()=>{
-                    this.props.router.go("/chats");
+                    this.props.router.go("/messenger");
                 }
             }
         });
@@ -4647,12 +4672,22 @@ class ProfileChange extends (0, _pageDefault.default) {
     }
     _onFocusChange(event) {
         const element = event.target;
-        if (!(0, _validator.isValid)(element).valid) {
+        const validationResult = (0, _validator.isValid)(element);
+        if (!validationResult.valid) {
             element.classList.add(this.props.styles["input-error"]);
             element.previousElementSibling?.classList.add(this.props.styles["input-error"]);
+            const prevError = element.nextElementSibling;
+            if (prevError && prevError.parentNode && prevError instanceof (0, _components.ErrorInput)) prevError.parentNode.removeChild(prevError);
+            const error = new (0, _components.ErrorInput)({
+                text: validationResult.reason,
+                class: this.props.styles["input-error"]
+            });
+            element.insertAdjacentElement("afterend", error.getContent());
         } else {
             element.classList.remove(this.props.styles["input-error"]);
             element.previousElementSibling?.classList.remove(this.props.styles["input-error"]);
+            const prevError = element.nextElementSibling;
+            if (prevError && prevError.parentNode && prevError instanceof (0, _components.ErrorInput)) prevError.parentNode.removeChild(prevError);
         }
     }
     render() {
@@ -5623,7 +5658,6 @@ class Router {
         window.onpopstate = (event)=>{
             this._onRoute(event.currentTarget.location.pathname);
         };
-    // this._onRoute(window.location.pathname);
     }
     _onRoute(pathname) {
         const route = this.getRoute(pathname);
@@ -6110,6 +6144,15 @@ class ChatAPI {
     }
     async getUsers(chatId) {
         const response = await this._API.get(`/chats/${chatId}/users`);
+        return response;
+    }
+    async changeAvatar(data) {
+        const response = await this._API.put("/chats/avatar", {
+            data,
+            headers: {
+                "Content-Type": "multipart/form-data"
+            }
+        });
         return response;
     }
 }
