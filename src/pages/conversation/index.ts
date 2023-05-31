@@ -61,9 +61,12 @@ export class Conversation extends Page {
     users.forEach((user) => {
 
       let avatar = this.props.icons.user;
+     
       if (user.avatar) {
         avatar = config.resourceUrl + user.avatar;
       }
+
+      console.log(avatar);
       const displayName = user.display_name
         ? user.display_name
         : `${user.first_name} ${user.second_name}`;
@@ -211,6 +214,7 @@ export class Conversation extends Page {
               });
               el.insertAdjacentElement('afterend', error.getContent());
             } else {
+                
               const name = el.getAttribute('name');
               const { value } = el;
               if (name) {
@@ -223,14 +227,14 @@ export class Conversation extends Page {
               }
             }
           });
-
+          //Мне внимательность нужно еще прокачать, закоментировал отправку и забыл про это
           if (isFormValid) {
-            // try {
-            //     this.g.EventBus.emit(GlobalEventBus.EVENTS.VALIDATE_SENDMESSAGE, inputs);
-            //     this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_SENDMESSAGE, inputs);
-            //   } catch (error) {
-            //     console.log('Error on send message: ', error);
-            //   }
+            try {
+              this.g.EventBus.emit(GlobalEventBus.EVENTS.VALIDATE_SENDMESSAGE, inputs);
+              this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_SENDMESSAGE, inputs);
+            } catch (error) {
+              console.log('Error on send message: ', error);
+            }
           }
 
 

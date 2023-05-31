@@ -38,14 +38,6 @@ export default class Route {
     if (!this._block) {
       this._block = this._blockClass;
 
-      // const className = Chat;
-      // this._block = new this._blockClass();
-
-      // const block = Object.create(window[className].prototype);
-      // block.constructor.apply(block, )
-
-      // const block = new className();
-
 
     }
 

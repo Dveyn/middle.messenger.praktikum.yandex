@@ -1,6 +1,6 @@
 import tmpl from './change.hbs';
 import {
-  Label, Input, Button, Link, ErrorMessage, AvatarImage,
+  Label, Input, Button, Link, ErrorMessage, AvatarImage, ErrorInput,
 } from '../../../components';
 
 import compile from '../../../utils/compile';
@@ -72,12 +72,27 @@ export class ProfileChange extends Page {
 
   private _onFocusChange(event: Event) {
     const element = event.target as HTMLInputElement;
-    if (!isValid(element).valid) {
+
+    const validationResult = isValid(element);
+    if (!validationResult.valid) {
+        
       element.classList.add(this.props.styles['input-error']);
       element.previousElementSibling?.classList.add(this.props.styles['input-error']);
+      const prevError = element.nextElementSibling as ErrorInput;
+      if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
+        prevError.parentNode.removeChild(prevError);
+      }
+         
+      const error = new ErrorInput({ text:validationResult.reason, class: this.props.styles['input-error'] });
+      element.insertAdjacentElement('afterend', error.getContent());
+     
     } else {
       element.classList.remove(this.props.styles['input-error']);
       element.previousElementSibling?.classList.remove(this.props.styles['input-error']);
+      const prevError = element.nextElementSibling as ErrorInput;
+      if (prevError && prevError.parentNode && prevError instanceof ErrorInput) {
+        prevError.parentNode.removeChild(prevError);
+      }
     }
   }
 

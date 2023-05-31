@@ -9,6 +9,7 @@ import { ModalCreateChat } from '../modals';
 import User from '../../utils/user';
 import { Conversation } from '../conversation';
 import Page, { PageProps } from '../../utils/page';
+import { config } from '../../utils/config';
 
 export interface LastMessage {
   user: {
@@ -67,7 +68,6 @@ export class Chat extends Page {
     const chats: ChatInfoData[] = JSON.parse(xhr.responseText);
 
     chats.forEach((chat) => {
-
       let timeString = '';
       if (chat.last_message?.time) {
         const time = new Date(chat.last_message.time);
@@ -77,9 +77,15 @@ export class Chat extends Page {
       }
       const textString = chat.last_message?.content ? chat.last_message.content : '';
 
+      let avatar = this.props.icons.user;
+     
+      if (chat.avatar) {
+        avatar = config.resourceUrl + chat.avatar;
+      }
+
       this._chatInfos.push(new ChatInfo({
         title: chat.title,
-        avatar: chat.avatar ? chat.avatar : this.props.icons.conversation,
+        avatar: avatar,
         text: textString,
         imagesAlt: `Чат ${chat.title}`,
         unread_count: chat.unread_count,

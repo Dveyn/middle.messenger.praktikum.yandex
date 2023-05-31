@@ -6,6 +6,7 @@ import { ModalAddUser } from '../add-user/add-user';
 import { ModalDeleteUser } from '../delete-user/delete-user';
 import { ModalConfirm } from '../confirm/confirm';
 import Page, { PageProps } from '../../../utils/page';
+import { ModalAvatar } from '../avatar/avatar';
 
 export class ChatActions extends Page {
 
@@ -30,7 +31,6 @@ export class ChatActions extends Page {
   }
 
   render() {
-
     const linkAddChatUser = new Link({
       class: `${this.props.styles.link} ${this.props.styles['chat-actions-element']}`,
       imageBeforeSrc: this.props.icons.adduser,
@@ -71,6 +71,7 @@ export class ChatActions extends Page {
     });
 
     return compile(tmpl, {
+      linkChangeAvatar,
       linkAddChatUser,
       linkDeleteChatUser,
       linkDeleteChat,

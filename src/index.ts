@@ -51,11 +51,11 @@ function onGetUserSucceed(xhr: XMLHttpRequest) {
   user.setData(d);
 
   g.EventBus.emit(GlobalEventBus.EVENTS.USERDATA_UPDATED, user);
-  router.go(window.location.pathname === '/' ? '/chats' : window.location.pathname);
+  router.go(window.location.pathname === '/' ? '/messenger' : window.location.pathname);
 }
 
 function onGetUserFailed() {
-  router.go(window.location.pathname === '/signup' ? '/signup' : '/');
+  router.go(window.location.pathname === '/sign-up' ? '/sign-up' : '/');
 }
 
 g.EventBus.on(GlobalEventBus.EVENTS.ACTION_INIT, userController.init.bind(userController));
@@ -100,8 +100,8 @@ g.EventBus.on(GlobalEventBus.EVENTS.ACTION_CONNECTCHAT, messagesController.conne
 
 router
   .use('/', login)
-  .use('/signup', signup)
-  .use('/chats', chat)
+  .use('/sign-up', signup)
+  .use('/messenger', chat)
   .use('/settings', profileInfo)
   .use('/settings-change', profileChange)
   .use('/settings-password', profilePassword)

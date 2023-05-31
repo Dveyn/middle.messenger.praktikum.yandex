@@ -39,7 +39,7 @@ export class ProfileInfo extends Page {
       imagesAlt: 'Назад',
       events: {
         click: () => { 
-          this.props.router.go('/chats');            
+          this.props.router.go('/messenger');            
         },
       },
     });
