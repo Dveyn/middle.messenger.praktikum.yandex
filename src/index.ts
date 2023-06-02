@@ -97,6 +97,8 @@ g.EventBus.on(GlobalEventBus.EVENTS.ACTION_CREATECHAT, chatController.createChat
 g.EventBus.on(GlobalEventBus.EVENTS.ACTION_CONNECTCHAT, messagesController.connectChat.bind(messagesController));
 
 
+console.log("AAAAAAAAAAAA");
+
 
 router
   .use('/', login)
