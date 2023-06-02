@@ -6,10 +6,10 @@ const PORT = 3000;
 
 app.use(express.static(`${__dirname}/dist`));
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '/dist/', 'index.html'));
 });
-
+  
 app.listen(PORT, () => {
   console.log(`My Chat listening on port ${PORT}!`);
 });
