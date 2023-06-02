@@ -36,12 +36,11 @@ export default class Router {
   }
 
   start() {
+    console.log(location.pathname);
+    
     window.onpopstate = ((event: PopStateEvent) => {
       this._onRoute((event.currentTarget as Window).location.pathname);
     });
-    window.onload = () => {
-      this._onRoute((event.currentTarget as Window).location.pathname);
-    };
   }
 
   _onRoute(pathname: string) {

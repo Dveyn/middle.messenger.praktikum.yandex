@@ -5640,10 +5640,8 @@ class Router {
         return this;
     }
     start() {
-        window.onpopstate = (event1)=>{
-            this._onRoute(event1.currentTarget.location.pathname);
-        };
-        window.onload = ()=>{
+        console.log(location.pathname);
+        window.onpopstate = (event)=>{
             this._onRoute(event.currentTarget.location.pathname);
         };
     }
