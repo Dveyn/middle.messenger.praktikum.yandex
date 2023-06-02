@@ -1,5 +1,5 @@
 .input {
-    font-family: $font-family;
+   font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 13px;
     line-height: 2;
@@ -8,13 +8,13 @@
     width: 280px;
     color: #1e1e1e;
     margin-bottom: 16px;
-}
 
-.input:focus{
-    outline: none;
-}
+    &:focus {
+        outline: none;
+    }
 
-.input-error {
-    border-bottom-color: red;
-    color: red !important;
+    &-error {
+        border-bottom-color: red;
+        color: red !important;
+    }
 }

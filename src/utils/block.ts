@@ -1,8 +1,7 @@
 import { v4 as makeUUID } from 'uuid';
 import EventBus from './eventbus';
-
-export default abstract class Block <Props extends Record<string, any> = unknown> {
-    
+import GlobalEventBus from './globaleventbus';
+export default class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -10,13 +9,21 @@ export default abstract class Block <Props extends Record<string, any> = unknown
     FLOW_RENDER: 'flow:render',
   };
 
-  _id = '';
+  _element: HTMLElement;
+
+  _meta: Object = {};
+
+  props: any;
+
+  _id: string = '';
 
   eventBus: (() => EventBus);
 
+  g: GlobalEventBus;
+
   constructor(
-    tagName = 'div',
-    props: Props,
+    tagName: string = 'div',
+    props: any,
   ) {
     const eventBus = new EventBus();
     this._meta = {
@@ -31,6 +38,8 @@ export default abstract class Block <Props extends Record<string, any> = unknown
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
+
+    this.g = GlobalEventBus.instance;
 
     eventBus.emit(Block.EVENTS.INIT);
   }
@@ -142,8 +151,6 @@ export default abstract class Block <Props extends Record<string, any> = unknown
   }
 
   _makePropsProxy(props: any) {
-    // Можно и так передать this
-    // Такой способ больше не применяется с приходом ES6+
     const self = this;
 
     return new Proxy(props, {
@@ -152,12 +159,13 @@ export default abstract class Block <Props extends Record<string, any> = unknown
         return typeof value === 'function' ? value.bind(target) : value;
       },
       set(target, prop: string, value) {
-        if (target[prop] !== value) {
+        // console.log('set: ', target[prop], 'to: ', value);
+        if (target[prop] !== value || typeof value === 'object') {
           target[prop] = value;
+
           self.eventBus().emit(Block.EVENTS.FLOW_CDU);
-          return true;
         }
-        return false;
+        return true;
       },
       deleteProperty(_target, _prop) {
         throw new Error('нет доступа');
@@ -170,6 +178,9 @@ export default abstract class Block <Props extends Record<string, any> = unknown
   }
 
   hide() {
-    this.getContent().style.display = 'none';
+    this._element.remove();
+
+    // this.element.innerHTML = '';
+    // this.getContent().style.display = 'none';
   }
 }

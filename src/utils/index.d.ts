@@ -1,12 +1,5 @@
-declare module '*.hbs' {
-  const templateFunction: (param?: any) => string;
-  export default templateFunction;
-}
+import Router from './services/route';
 
-declare module '*.handlebars' {
-  const templateFunction: (param?: any) => string;
-  export default templateFunction;
-}
 declare module '*.jpg' {
   const content: string;
   export default content;
@@ -26,3 +19,15 @@ declare module '*.svg' {
   const content: any;
   export default content;
 }
+
+
+declare module '*.hbs' {
+  const templateFunction: (param?: any) => string;
+  export default templateFunction;
+}
+
+declare module '*.handlebars' {
+  const templateFunction: (param?: any) => string;
+  export default templateFunction;
+}
+

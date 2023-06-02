@@ -4,11 +4,12 @@
         <div class="{{ styles.search-container }}">
             {{{ inputSearch }}}
             <div class={{ styles.search-container-placeholder }}>
-                <img class={{ styles.search-icon }} src={{ icons.search }}  alt="Поиск"> Поиск
+                <img class={{ styles.search-icon }} src={{ icons.search }}  alt="{{ imagesAlt }}"> Поиск
             </div>
         </div>
         <div class="{{ styles.chat-infos-container }}">
             {{{ chatInfos }}}
+            {{{ linkAddChat }}}
         </div>
     </div>
     <div id="conversation" class={{ styles.chat-right-container }}>

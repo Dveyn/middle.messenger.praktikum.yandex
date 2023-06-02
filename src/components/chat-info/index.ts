@@ -2,18 +2,19 @@ import tmpl from './chat-info.hbs';
 import Block from '../../utils/block';
 import compile from '../../utils/compile';
 
-interface ChatInfoProps {
-  images: Record<string, any>,
-  styles: Record<string, any>,
-  imagesAlt: string,
-  name: string,
+export interface ChatInfoProps {
+  title: string,
   time: string,
+  imagesAlt: string,
   text: string,
-  unread: number | string | undefined,
+  avatar: string,
+  unread_count: string | number | undefined,
+  styles: Record<string, any>,
   events?: {
     click: () => void
   }
 }
+
 
 export class ChatInfo extends Block {
   constructor(props: ChatInfoProps) {

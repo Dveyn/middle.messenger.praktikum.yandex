@@ -1,5 +1,5 @@
 .avatar-modal-header {
-    font-family: Helvetica, sans-serif;
+   font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 15px;
     line-height: 20px;
@@ -7,22 +7,42 @@
     color: #1e1e1e;
 }
 
+.avatar-form {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    flex-grow: 1;
+}
+
+.hidden {
+    display: none;
+}
+
 .avatar-modal-choose-file-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 100%;
 }
 
-.avatar-modal-choose-file {
-    margin: auto;
-    font-family: Helvetica, sans-serif;
+.avatar-modal-file {
+   font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 12px;
     line-height: 16px;
-    text-align: center;
+    margin: auto;
+}
+
+.avatar-modal-choose-file {
+   font-family: Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 16px;
     text-decoration-line: underline;
     color: #3369f3;
+    margin: auto;
 }
 
 .avatar-modal-change-avatar {
-    @extend .signup-form-button-primary !optional;
+    @extend .signup-form-button-primary;
 }
