@@ -71,7 +71,6 @@ export class ChatActions extends Page {
     });
 
     return compile(tmpl, {
-      linkChangeAvatar,
       linkAddChatUser,
       linkDeleteChatUser,
       linkDeleteChat,
