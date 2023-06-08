@@ -1,22 +1,15 @@
-# Шаблон
-### https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=0%3A1npm
+# 🚀 Welcome to your new awesome project!
 
-# Netlify
-### https://jovial-bavarois-595a79.netlify.app/
+This project has been created using **webpack-cli**, you can now run
 
+```
+npm run build
+```
 
-# Команды
-### установка зависимостей
-- `npm i`
+or
 
-### Сброка проекта
-- `npm run build `
+```
+yarn build
+```
 
-### Запуск локальной версии 
-- `npm run start`
-
-### Запуск проверки ESLint
-- `npm run eslint`
-
-### Запуск проверки stylelint
-- `npm run lint:styles`
+to bundle your application

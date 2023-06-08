@@ -1,24 +1,10 @@
 {
-    "include": ["./src/**/*","./server.ts"],
-    "exclude": ["./dist"],
-    "overrides": [{
-        "files": ["*.ts", "*.tsx"],
-    }],
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "sourceMap": true,
-        "strictNullChecks": true,
-        "target": "ES6",
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "allowJs": true,
-        "moduleResolution": "Node",
-        "allowSyntheticDefaultImports": true,
-        "typeRoots": [
-            "./src/@types", 
-            "./node_modules/@types"
-        ]
-    }
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "allowJs": true
+  },
+  "files": ["src/index.ts"]
 }
