@@ -1,7 +1,7 @@
 {
-  "name": "my-webpack-project",
+  "name": "spint_4",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +16,13 @@
     "url": "git+https://github.com/Dveyn/middle.messenger.praktikum.yandex.git"
   },
   "keywords": [],
+  "targets": {
+    "app": {
+      "context": "browser",
+      "includeNodeModules": true,
+      "outputFormat": "esmodule"
+    }
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -23,16 +30,28 @@
   },
   "homepage": "https://github.com/Dveyn/middle.messenger.praktikum.yandex#readme",
   "dependencies": {
+    "@babel/runtime": "7.17.7",
     "handlebars": "^4.7.7",
+    "handlebars-loader": "^1.7.3",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@babel/core": "7.17.7",
+    "@babel/plugin-transform-runtime": "7.17.0",
+    "@babel/preset-env": "7.16.11",
+    "@babel/preset-typescript": "7.16.7",
+    "@babel/register": "7.17.0",
+    "@types/handlebars": "^4.1.0",
+    "@types/node-sass": "^4.11.3",
     "@webpack-cli/generators": "^3.0.7",
+    "babel-loader": "8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.7.6",
-    "sass": "^1.63.2",
-    "sass-loader": "^13.3.1",
+    "sass": "^1.63.3",
+    "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.3",
     "typescript": "^5.1.3",

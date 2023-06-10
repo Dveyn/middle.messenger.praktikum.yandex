@@ -49,7 +49,7 @@
     box-sizing: border-box;
 
     &:hover {
-        border: 1px solid $primary-background;
+        border: 1px solid #3369F3;
         cursor: pointer;
     }
 }
@@ -181,7 +181,7 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $primary-background-hover;
+        background-color: #5680eb;
 
     }
 }

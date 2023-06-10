@@ -1,67 +1,87 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const isProduction = process.env.NODE_ENV == 'production';
+const isDev = process.env.NODE_ENV === 'development';
 
+const filename = ext => isDev ? `[name].${ext}` : `[name].[fullhash].${ext}`;
 
-const stylesHandler = MiniCssExtractPlugin.loader;
-
-
-
-const config = {
-    entry: './src/index.ts',
+module.exports = {
+    context: path.resolve(__dirname, 'src'),
+    mode: 'development',
+    entry: {
+        main: './index.ts',
+    },
+    resolve: {
+        extensions: ['.ts', '.js', '.scss'],
+    },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        filename: filename('js'),
+        path: path.resolve(__dirname, 'dist')
     },
     devServer: {
-        open: true,
-        host: 'localhost',
+        static: {
+            directory: path.join(__dirname, 'dist'),
+        },
+        historyApiFallback: true,
+        port: 3000
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: 'index.html',
+        new HTMLWebpackPlugin({
+            template: './index.html',
+            minify: {
+                collapseWhitespace: !isDev
+            }
         }),
-
-        new MiniCssExtractPlugin(),
-
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+        new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin({
+            filename: filename('css')
+        })
     ],
     module: {
         rules: [
             {
-                test: /\.(ts|tsx)$/i,
-                loader: 'ts-loader',
-                exclude: ['/node_modules/'],
+                test: /\.(png|svg|jpg|gif)$/,
+                use: ['file-loader']
             },
             {
-                test: /\.s[ac]ss$/i,
-                use: [stylesHandler, 'css-loader', 'sass-loader'],
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            esModule: true,
+                            modules: {
+                                localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                            }
+                        }
+                    },
+                    'sass-loader'
+                ]
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-                type: 'asset',
+                test: /\.hbs$/,
+                use: ['handlebars-loader']
+
             },
-
-            // Add your rules for custom modules here
-            // Learn more about loaders from https://webpack.js.org/loaders/
-        ],
-    },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
-    },
-};
-
-module.exports = () => {
-    if (isProduction) {
-        config.mode = 'production';
-        
-        
-    } else {
-        config.mode = 'development';
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-typescript'
+                        ],
+                        plugins: [
+                            '@babel/plugin-transform-runtime'
+                        ]
+                    }
+                }
+            }
+        ]
     }
-    return config;
-};
+}
