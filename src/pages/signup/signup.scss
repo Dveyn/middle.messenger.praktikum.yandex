@@ -4,8 +4,12 @@
 
 .signup-form-button-primary {
     color: #fff;
-    background: #3369f3;
+    background: $primary-background;
     border-radius: 8px;
+
+    &:hover {
+        background: $primary-background-hover;
+    }
 }
 
 .signup-form-button-secondary {

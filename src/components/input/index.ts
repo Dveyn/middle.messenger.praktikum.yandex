@@ -10,9 +10,11 @@ interface InputProps {
   placeholder?: string,
   value?: string,
   validationType?: string,
+  accept?: string,
   events?: {
     blur?: () => void,
-    focus?: () => void
+    focus?: () => void,
+    change?: (e: Event) => void
   }
 }
 
@@ -22,6 +24,7 @@ export class Input extends Block {
   }
 
   render() {
+
     if (this.props.type === 'textarea') {
       return compile(tmplTextarea, this.props);
     }

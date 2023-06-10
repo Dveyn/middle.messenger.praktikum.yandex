@@ -1,5 +1,5 @@
 .button {
-    font-family: Helvetica, sans-serif;
+   font-family: Helvetica, sans-serif;
     font-style: normal;
     font-size: 13px;
     line-height: 13px;
@@ -8,4 +8,9 @@
     height: 37px;
     border-width: 0;
     margin: auto;
+    cursor: pointer;
+}
+
+.button-primary-loading {    
+    color: $primary-background-hover;
 }

@@ -1,83 +1,176 @@
 import tmpl from './chat.hbs';
-import Block from '../../utils/block';
 import compile from '../../utils/compile';
 
 import { Link, Input, ChatInfo } from '../../components';
 import { isValid } from '../../utils/validator';
 import { renderDOM } from '../../utils/renderDom';
-import { typeProps } from '../../type/typeClass';
+import GlobalEventBus from '../../utils/globaleventbus';
+import { ModalCreateChat } from '../modals';
+import User from '../../utils/user';
+import { Conversation } from '../conversation';
+import Page, { PageProps } from '../../utils/page';
+import { config } from '../../utils/config';
 
+export interface LastMessage {
+  user: {
+    first_name: string,
+    second_name: string,
+    avatar: string,
+    email: string,
+    login: string,
+    phone: string,
+  }
+  time: string,
+  content: string,
+}
+export interface ChatInfoData {
+  id: number,
+  title: string,
+  avatar: string,
+  unread_count: number | undefined,
+  last_message?: LastMessage,
+}
 
-export class Chat extends Block {
-    constructor(props: typeProps) {
-        super('div', props);
-    }
+export class Chat extends Page {
 
+  private _chatInfos: ChatInfo[];
 
-    _onFocusChange(event: Event) {
-        const element = event.target as HTMLInputElement;
-        const validationResult = isValid(element);
-        if (!validationResult.valid) {
-            if (!element.classList.contains(this.props.styles['input-error'])) {
-                element.classList.add(this.props.styles['input-error']);
+  constructor(props: PageProps) {
+    super('div', props);
+
+    this.g.EventBus.on(
+      GlobalEventBus.EVENTS.ACTION_GETCHATS_SUCCEED,
+      this._onGetChatsSucceed.bind(this));
+    this.g.EventBus.on(
+      GlobalEventBus.EVENTS.ACTION_GETCHATTOKEN_SUCCEED,
+      this._onGetChatTokenSucceed.bind(this));
+  }
+
+  private _onGetChatTokenSucceed(data: { id: number, token: string }) {
+
+    User.instance.addToken({
+      id: data.id,
+      token: data.token,
+    });
+
+    this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_CONNECTCHAT, {
+      userId: User.instance.getData('id'),
+      chatId: data.id,
+      token: data.token,
+    });
+
+    this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_GETCHATUSERS, data.id);
+  }
+
+  private _onGetChatsSucceed(xhr: XMLHttpRequest) {
+
+    this._chatInfos = [];
+    const chats: ChatInfoData[] = JSON.parse(xhr.responseText);
+
+    chats.forEach((chat) => {
+      let timeString = '';
+      if (chat.last_message?.time) {
+        const time = new Date(chat.last_message.time);
+        const hours = String(time.getHours()).padStart(2, '0');
+        const minutes = String(time.getMinutes()).padStart(2, '0');
+        timeString = `${hours}:${minutes}`;
+      }
+      const textString = chat.last_message?.content ? chat.last_message.content : '';
+
+      let avatar = this.props.icons.user;
+     
+      if (chat.avatar) {
+        avatar = config.resourceUrl + chat.avatar;
+      }
+
+      this._chatInfos.push(new ChatInfo({
+        title: chat.title,
+        avatar: avatar,
+        text: textString,
+        imagesAlt: `Чат ${chat.title}`,
+        unread_count: chat.unread_count,
+        time: timeString,
+        styles: this.props.styles,
+        events: {
+          click: () => {
+            try {
+              const props = { chatId: chat.id, ...this.props };
+              const conversation = new Conversation(props);
+              this.g.EventBus.emit(GlobalEventBus.EVENTS.ACTION_GETCHATTOKEN, chat.id);
+
+              renderDOM('#conversation', conversation);
+
+            } catch (error) {
+              console.log(error);
             }
-            if (prevError && prevError.parentNode) {
-                prevError.parentNode.removeChild(prevError);
-            }
+          },
+        },
+      }));
+    });
+    this.setProps({
+      chatInfos: this._chatInfos,
+    });
+  }
 
-            const error = new ErrorInput({ text: validationResult.reason, class: this.props.styles['input-error'] });
-            element.insertAdjacentElement('afterend', error.getContent());
-        } else {
-            element.classList.remove(this.props.styles['input-error']);
-            const prevError = element.nextElementSibling as ErrorInput;
-            if (prevError && prevError.parentNode) {
-              prevError.parentNode.removeChild(prevError);
-            }
-        }
+  private _onFocusChange(event: Event) {
+    const element = event.target as HTMLInputElement;
+    if (!isValid(element).valid) {
+      if (!element.classList.contains(this.props.styles['input-error'])) {
+        element.classList.add(this.props.styles['input-error']);
+      }
+    } else {
+      element.classList.remove(this.props.styles['input-error']);
     }
+  }
 
-    render() {
-        const chatInfos: ChatInfo[] = [];
+  render() {
 
-        for (let i = 0; i < 5; i++) {
-            chatInfos.push(new ChatInfo({
-                images: this.props.images,
-                styles: this.props.styles,
-                imagesAlt: 'Чат',
-                name: 'Андрей',
-                time: '00:41',
-                text: `Тестовое сообщене ${i}`,
-                unread: Math.round(Math.random() * 10),
-                events: {
-                    click: () => { renderDOM('#conversation', this.props.openConversation); },
-                },
-            }));
-        }
-        const linkProfileOpen = new Link({
-            text: 'Профиль ',
-            class: this.props.styles['link-profile-open'],
-            imageAfterSrc: this.props.icons.profilearrow,
-            events: {
-                click: () => { renderDOM('#app', this.props.openProfile); },
-            },
-        });
+    const chatInfos: ChatInfo[] = [];
+    this._chatInfos = chatInfos;
 
-        const inputSearch = new Input({
-            type: 'text',
-            class: `${this.props.styles.input} ${this.props.styles['input-search-box']}`,
-            name: 'search',
-            placeholder: ' ',
-            events: {
-                blur: this._onFocusChange.bind(this),
-                focus: this._onFocusChange.bind(this),
-            },
-        });
+    const linkProfileOpen = new Link({
+      text: 'Профиль ',
+      class: this.props.styles['link-profile-open'],
+      imageAfterSrc: this.props.icons.profilearrow,
+      imagesAlt: 'Профиль',
+      events: {
+        click: () => {
+          this.props.router.go('/settings');
+        },
+      },
+    });
 
-        return compile(tmpl, {
-            chatInfos,
-            linkProfileOpen,
-            inputSearch,
-            ...this.props,
-        });
-    }
+    const linkAddChat = new Link({
+      text: '+',
+      class: this.props.styles['add-chat-container'],
+      events: {
+        click: () => {
+          const modalCreateChat = new ModalCreateChat({
+            styles: this.props.styles,
+          });
+
+          renderDOM('#modal', modalCreateChat);
+        },
+      },
+    });
+
+    const inputSearch = new Input({
+      type: 'text',
+      class: `${this.props.styles.input} ${this.props.styles['input-search-box']}`,
+      name: 'search',
+      placeholder: ' ',
+      events: {
+        blur: this._onFocusChange.bind(this),
+        focus: this._onFocusChange.bind(this),
+      },
+    });
+
+    return compile(tmpl, {
+      chatInfos,
+      linkProfileOpen,
+      linkAddChat,
+      inputSearch,
+      ...this.props,
+    });
+  }
 }

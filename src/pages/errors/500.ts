@@ -1,5 +1,5 @@
 import { ErrorComponent } from '../../components/error';
-import { renderDOM } from '../../utils/renderdom';
+import { renderDOM } from '../../utils/renderDom';
 
 const errorPage = new ErrorComponent({
   code: 500,
