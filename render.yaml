@@ -1,0 +1,6 @@
+services:
+  - name: sprint_4
+    env:
+      - key: PORT
+        value: 3000
+    startCommand: "docker build -t sprint_4 . && docker run -p 3000:3000 sprint_4"
