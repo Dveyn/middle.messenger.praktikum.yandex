@@ -26,6 +26,10 @@ function importAllImages(r: __WebpackModuleApi.RequireContext) {
   return images;    
 }
 
+
+console.log("STYLE ===========>" + JSON.stringify(styles));
+
+
 const icons = importAllImages(require.context('../static/icons/', false, /\.(png|jpe?g|svg)$/));
 
 const user = new User();

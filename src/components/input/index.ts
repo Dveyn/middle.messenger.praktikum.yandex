@@ -19,7 +19,7 @@ interface InputProps {
 }
 
 export class Input extends Block {
-  constructor(props: InputProps) {
+  constructor(props: InputProps) {    
     super('div', props);
   }
 

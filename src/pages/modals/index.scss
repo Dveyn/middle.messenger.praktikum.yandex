@@ -1,9 +1,10 @@
-@import './avatar/avatar.scss';
-@import './create-chat/create-chat.scss';
-@import './chat-actions/chat-actions.scss';
-@import './add-user/add-user.scss';
-@import './delete-user/delete-user.scss';
-@import './confirm/confirm.scss';
+@use './avatar/avatar' as avatar;
+@use './create-chat/create-chat' as createChat;
+@use './chat-actions/chat-actions' as chatActions;
+@use './add-user/add-user' as addUser;
+@use './delete-user/delete-user' as deleteUser;
+@use './confirm/confirm' as confirm;
+
 
 .modal-container {
     position: absolute;
@@ -31,7 +32,7 @@
 }
 
 .modal-popup-small {
-    @extend .modal-popup;
+    @extend .modal-popup !optional;
 
     height: 150px;
 }

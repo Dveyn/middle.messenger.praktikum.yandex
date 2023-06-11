@@ -1,6 +1,6 @@
-@import "./button/button.scss";
-@import "./input/input.scss";
-@import "./label/label.scss";
-@import "./chat-info/chat-info.scss";
-@import "./link/link.scss";
-@import "./error-message/error-message.scss";
+@use './button/button' as button;
+@use './input/input' as input;
+@use './label/label' as label;
+@use './chat-info/chat-info' as chatInfo;
+@use './link/link' as link;
+@use './error-message/error-message' as errorMessage;

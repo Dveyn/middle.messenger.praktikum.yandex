@@ -1,5 +1,5 @@
-@import 'components/index.scss';
-@import 'pages/index.scss';
+@use './components/index' as components;
+@use './pages/index' as pages;
 
 .auth-popup {
     margin: auto;
@@ -7,7 +7,7 @@
     background: #fff;
     box-shadow: 0 0 6px rgb(0 0 0 / 14%);
     border-radius: 12px;
-}
+} 
 
 .auth-container {
     padding: 30px;

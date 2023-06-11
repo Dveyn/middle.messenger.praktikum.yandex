@@ -14,7 +14,7 @@ module.exports = {
         main: './index.ts',
     },
     resolve: {
-        extensions: ['.ts', '.js', '.scss'],
+        extensions: ['.ts', '.js'],
     },
     output: {
         filename: filename('js'),
@@ -48,19 +48,26 @@ module.exports = {
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
-                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            esModule: true,
-                            modules: {
-                                localIdentName: "[path][name]__[local]--[hash:base64:5]",
-                            }
-                        }
-                    },
-                    'sass-loader'
+                  isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                  {
+                    loader: 'css-loader',
+                    options: {
+                      esModule: true,
+                      modules: {
+                        localIdentName: "[path][name]__[local]--[hash:base64:5]",
+                      },
+                      sourceMap: true // Добавлено
+                    }
+                  },
+                  {
+                    loader: 'sass-loader',
+                    options: {
+                      sourceMap: true // Добавлено
+                    }
+                  }
                 ]
-            },
+              }
+              ,
             {
                 test: /\.hbs$/,
                 use: ['handlebars-loader']

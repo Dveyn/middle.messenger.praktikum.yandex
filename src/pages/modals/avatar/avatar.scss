@@ -44,5 +44,5 @@
 }
 
 .avatar-modal-change-avatar {
-    @extend .signup-form-button-primary;
+    @extend .signup-form-button-primary !optional;
 }
