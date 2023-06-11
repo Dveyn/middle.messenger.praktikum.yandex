@@ -4,9 +4,9 @@ import { expect } from 'chai';
 global.XMLHttpRequest = require('xhr2');
 
 describe('HTTPTransport', () => {
-  const base = 'https://httpbin.org/';
+  const base = 'http://httpbin.org/';
   const REST = new HTTPTransport(base);
-  
+
   it('Should perform GET request', async () => {
     const result = await REST.get('/get');
     expect(result.statusText).equals('OK');
