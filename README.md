@@ -4,8 +4,6 @@
 # Netlify
 ### https://jovial-bavarois-595a79.netlify.app/
 
-# Render.com 
-### https://sprint-4-wepe.onrender.com/
 # Команды
 ### установка зависимостей
 - `npm i`
