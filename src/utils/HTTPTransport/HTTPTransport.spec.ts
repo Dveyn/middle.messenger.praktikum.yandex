@@ -4,7 +4,7 @@ import { expect } from 'chai';
 global.XMLHttpRequest = require('xhr2');
 
 describe('HTTPTransport', () => {
-  const base = 'http://httpbin.org/';
+  const base = 'https://ananievds.ru';
   const REST = new HTTPTransport(base);
 
   it('Should perform GET request', async () => {
