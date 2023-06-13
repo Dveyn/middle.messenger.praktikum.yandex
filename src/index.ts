@@ -21,13 +21,13 @@ function importAllImages(r: __WebpackModuleApi.RequireContext) {
   r.keys().map((item) => { 
     console.log(item);
     
-      images[item.replace('./', '').replace(/\.(svg|png|jpe?g)/, '')] = r(item).default;
+    images[item.replace('./', '').replace(/\.(svg|png|jpe?g)/, '')] = r(item).default;
   });
   return images;    
 }
 
 
-console.log("STYLE ===========>" + JSON.stringify(styles));
+console.log('STYLE ===========>' + JSON.stringify(styles));
 
 
 const icons = importAllImages(require.context('../static/icons/', false, /\.(png|jpe?g|svg)$/));
