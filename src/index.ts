@@ -3,22 +3,34 @@ import {
   Login, Signup, Chat, ProfileInfo, ProfileChange, ProfilePassword,
 } from './pages';
 
-import * as styles from './styles.scss';
-import images from '../static/images/avatar04.png';
-import iconsSVG from '../static/icons/*.svg';
-import iconsPNG from '../static/icons/*.png';
 import Router from './utils/services/router';
 import { 
   validateCreateChat, validateLogin, validateSaveInfo, validateSavePassword, validateSignup,
   validateSendMessage, validateAddChatUser, validateDeleteChatUser, 
 } from './utils/validator';
 import GlobalEventBus from './utils/globaleventbus';
+import { default as styles } from './styles.scss';
 import User from './utils/user';
 import UserController from './utils/controllers/user';
 import ChatController from './utils/controllers/chat';
 import MessagesController from './utils/controllers/messages';
 
-const icons = Object.assign(iconsSVG, iconsPNG);
+
+function importAllImages(r: __WebpackModuleApi.RequireContext) {
+  const images: Record<string, string> = {};
+  r.keys().map((item) => { 
+    console.log(item);
+    
+    images[item.replace('./', '').replace(/\.(svg|png|jpe?g)/, '')] = r(item).default;
+  });
+  return images;    
+}
+
+
+console.log('STYLE ===========>' + JSON.stringify(styles));
+
+
+const icons = importAllImages(require.context('../static/icons/', false, /\.(png|jpe?g|svg)$/));
 
 const user = new User();
 
@@ -31,7 +43,7 @@ const chatController = new ChatController();
 const messagesController = new MessagesController();
 
 
-const assets = { styles, icons, images };
+const assets = { styles, icons };
 const initProps = { ...assets, router };
 
 const login = new Login(initProps);

@@ -1,5 +1,4 @@
 import Router from './services/route';
-
 declare module '*.jpg' {
   const content: string;
   export default content;
@@ -11,16 +10,14 @@ declare module '*.png' {
 }
 
 declare module '*.scss' {
-  const content: Record<string, string>;
-  export default content;
+  const classes: { [key: string]: string };
+  export default classes;
 }
 
 declare module '*.svg' {
-  const content: any;
+  const content: string;
   export default content;
 }
-
-
 declare module '*.hbs' {
   const templateFunction: (param?: any) => string;
   export default templateFunction;

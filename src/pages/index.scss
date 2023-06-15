@@ -1,8 +1,8 @@
-@import url("login/login.scss");
-@import url("signup/signup.scss");
-@import url("chat/chat.scss");
-@import url("conversation/conversation.scss");
-@import url("profile/info/info.scss");
-@import url("profile/change/change.scss");
-@import url("profile/password/password.scss");
-@import url("modals/index.scss");
+@use './login/login' as login;
+@use './signup/signup' as signup;
+@use './chat/chat' as chat;
+@use './conversation/conversation' as conversation;
+@use './profile/info/info' as profileInfo;
+@use './profile/change/change' as profileChange;
+@use './profile/password/password' as profilePassword;
+@use './modals/index' as modals;

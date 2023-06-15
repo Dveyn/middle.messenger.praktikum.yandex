@@ -4,7 +4,6 @@
 # Netlify
 ### https://jovial-bavarois-595a79.netlify.app/
 
-
 # Команды
 ### установка зависимостей
 - `npm i`
@@ -15,8 +14,8 @@
 ### Запуск локальной версии 
 - `npm run start`
 
-### Запуск проверки ESLint
-- `npm run eslint`
+### Запуск теста 
+- `npm run test`
+ 
 
-### Запуск проверки stylelint
-- `npm run lint:styles`
+

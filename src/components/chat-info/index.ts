@@ -18,6 +18,8 @@ export interface ChatInfoProps {
 
 export class ChatInfo extends Block {
   constructor(props: ChatInfoProps) {
+    console.log(props.styles);
+    
     super('div', props);
   }
 
